@@ -12,5 +12,5 @@ data.
 Such tasks include the preparation of files corresponding to:
 - Terrestrial Water Storage Anomaly using GRACE data
 
-Up-to-date installation instructions can be found in requirements.pip and 
-.travis.yml files.
+Up-to-date installation instructions can be found in requirements.apt, 
+requirements.pip, and .travis.yml files. 

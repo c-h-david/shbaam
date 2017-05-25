@@ -18,6 +18,7 @@
 #Requirements for brew
 #*******************************************************************************
 python
+pypy
 
 homebrew/science/hdf5
 homebrew/science/netcdf

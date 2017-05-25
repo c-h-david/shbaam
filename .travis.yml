@@ -58,6 +58,7 @@ before_install:
 #*******************************************************************************
 install:
 - cd $TRAVIS_BUILD_DIR
+- sudo pip install $(grep numpy requirements.pip)
 - sudo pip install -r requirements.pip
 
 

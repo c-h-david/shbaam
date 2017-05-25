@@ -26,6 +26,7 @@ netcdf-bin
 libnetcdf-dev
 libhdf5-serial-dev
 
+libgdal1h
 gdal-bin
 libgdal-dev
 

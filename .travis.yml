@@ -1,0 +1,74 @@
+#*******************************************************************************
+#.travis.yml
+#*******************************************************************************
+
+#Purpose:
+#Travis CI is a hosted continuous integration service, that is, it allows 
+#running code directly from a repository and checking that the code acts as 
+#expected. The purpose of the .travis.yml file is to give instructions to Travis 
+#CI on how to do the work.
+#Author:
+#Cedric H. David, 2017-2017
+
+
+#*******************************************************************************
+#System specifications for Travis CI
+#*******************************************************************************
+language: generic            #Language cannot yet be 'python' for OSX in Travis
+
+matrix:
+  include:
+    - os: linux
+      sudo: required
+    - os: osx
+  allow_failures:
+    - os: osx
+
+
+#*******************************************************************************
+#Before installing SHBAAM
+#*******************************************************************************
+before_install:
+
+#-------------------------------------------------------------------------------
+#Specific to Linux
+#-------------------------------------------------------------------------------
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt-get --version             ; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $(grep -v -E '(^#|^$)' requirements.apt) ; fi
+
+
+#-------------------------------------------------------------------------------
+#Specific to OSX
+#-------------------------------------------------------------------------------
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew --version                  ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install $(grep -v -E '(^#|^$)' requirements.brw) ; fi
+
+#-------------------------------------------------------------------------------
+#General environment details
+#-------------------------------------------------------------------------------
+- uname -a
+- echo $TRAVIS_OS_NAME
+- gcc --version
+- python --version
+- pip --version
+
+
+#*******************************************************************************
+#Installing SHBAAM
+#*******************************************************************************
+install:
+- cd $TRAVIS_BUILD_DIR
+- pip install -r requirements.pip
+
+
+#*******************************************************************************
+#Testing SHBAAM
+#*******************************************************************************
+script:
+- cd $TRAVIS_BUILD_DIR
+- echo "The build is now completed"
+
+
+#*******************************************************************************
+#End
+#*******************************************************************************

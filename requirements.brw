@@ -17,10 +17,8 @@
 #*******************************************************************************
 #Requirements for brew
 #*******************************************************************************
-homebrew/science/netcdf
 homebrew/science/hdf5
-
-gdal
+homebrew/science/netcdf
 
 spatialindex
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #*******************************************************************************
-#shb_twsa.py
+#shbaam_twsa.py
 #*******************************************************************************
 
 #Purpose:
@@ -389,7 +389,7 @@ h.institution=''
 h.source='SHBAAM: '+vsn+', GRACE: '+os.path.basename(shb_grc_ncf)             \
                       +', Scale factors: '+os.path.basename(shb_fct_ncf)
 h.history='date created: '+dt.isoformat()+'+00:00'
-h.references='https://github.com/c-h-david/shb/'
+h.references='https://github.com/c-h-david/shbaam/'
 h.comment=''
 h.featureType='timeSeries'
 

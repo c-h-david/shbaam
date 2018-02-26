@@ -131,8 +131,8 @@ cd -
 #-------------------------------------------------------------------------------
 #Download parameters
 #-------------------------------------------------------------------------------
-URL="http://rapid-hub.org/data/CI/Nepal_SER"
-folder="../input/Nepal_SER"
+URL="http://rapid-hub.org/data/CI/SERVIR_STK"
+folder="../input/SERVIR_STK"
 list="                                                                         \
       Nepal.zip                                                                \
      "
@@ -155,8 +155,8 @@ done
 #-------------------------------------------------------------------------------
 #Download parameters
 #-------------------------------------------------------------------------------
-URL="http://rapid-hub.org/data/CI/Nepal_SER"
-folder="../output/Nepal_SER"
+URL="http://rapid-hub.org/data/CI/SERVIR_STK"
+folder="../output/SERVIR_STK"
 list="                                                                         \
       map_Nepal.nc                                                             \
       timeseries_Nepal.csv                                                     \
@@ -176,7 +176,7 @@ done
 #*******************************************************************************
 #Convert legacy files
 #*******************************************************************************
-unzip -nq ../input/Nepal_SER/Nepal.zip -d ../input/Nepal_SER/
+unzip -nq ../input/SERVIR_STK/Nepal.zip -d ../input/SERVIR_STK/
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 

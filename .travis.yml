@@ -26,6 +26,13 @@ matrix:
 
 
 #*******************************************************************************
+#Environment variables for different tests on multiple Travis CI workers
+#*******************************************************************************
+env:
+- TST_PUB_DWNL='./tst_pub_dwnl_David_etal_201x_SER.sh' TST_PUB_REPR='./tst_pub_repr_David_etal_201x_SER.sh'
+
+
+#*******************************************************************************
 #Before installing SHBAAM
 #*******************************************************************************
 before_install:
@@ -68,6 +75,9 @@ install:
 #*******************************************************************************
 script:
 - cd $TRAVIS_BUILD_DIR
+- cd ./tst/
+- echo $TST_PUB_DWNL && $TST_PUB_DWNL
+- echo $TST_PUB_REPR && $TST_PUB_REPR
 - echo "The build is now completed"
 
 

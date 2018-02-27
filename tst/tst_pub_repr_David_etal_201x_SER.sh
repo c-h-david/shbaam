@@ -101,7 +101,7 @@ echo "- Comparing timeseries"
 x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
 
 echo "- Comparing maps"
-./tst_cmp_n2d.py                                                               \
+./tst_cmp_n3d.py                                                               \
      ../output/SERVIR_STK/map_Nepal.nc                                         \
      ../output/SERVIR_STK/map_Nepal_tst.nc                                     \
      1e-6                                                                      \

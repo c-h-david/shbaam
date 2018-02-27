@@ -100,6 +100,15 @@ echo "- Comparing timeseries"
      > $cmp_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
 
+echo "- Comparing maps"
+./tst_cmp_n2d.py                                                               \
+     ../output/SERVIR_STK/map_Nepal.nc                                         \
+     ../output/SERVIR_STK/map_Nepal_tst.nc                                     \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
 rm -f $run_file
 rm -f $cmp_file
 echo "Success"
@@ -110,6 +119,7 @@ fi
 #*******************************************************************************
 #Clean up
 #*******************************************************************************
+rm -f ../output/SERVIR_STK/*_tst.*
 
 
 #*******************************************************************************

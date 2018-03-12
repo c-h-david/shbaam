@@ -73,7 +73,7 @@ unt=0
 
 
 #*******************************************************************************
-#Terrestrial water storage anomalies
+#Terrestrial water storage anomalies, Nepal
 #*******************************************************************************
 unt=$((unt+1))
 if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
@@ -81,7 +81,7 @@ echo "Running unit test $unt/x"
 run_file=tmp_run_$unt.txt
 cmp_file=tmp_cmp_$unt.txt
 
-echo "- Terrestrial water storage anomalies"
+echo "- Terrestrial water storage anomalies, Nepal"
 ../src/shbaam_twsa.py                                                          \
      ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
@@ -104,6 +104,94 @@ echo "- Comparing maps"
 ./tst_cmp_n3d.py                                                               \
      ../output/SERVIR_STK/map_Nepal.nc                                         \
      ../output/SERVIR_STK/map_Nepal_tst.nc                                     \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Terrestrial water storage anomalies, FourDoabs
+#*******************************************************************************
+unt=$((unt+1))
+if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Terrestrial water storage anomalies, FourDoabs"
+../src/shbaam_twsa.py                                                          \
+     ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
+     ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
+     ../input/SERVIR_STK/FourDoabs.shp                                         \
+     ../output/SERVIR_STK/timeseries_FourDoabs_tst.csv                         \
+     ../output/SERVIR_STK/map_FourDoabs_tst.nc                                 \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $? ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_FourDoabs.csv                             \
+     ../output/SERVIR_STK/timeseries_FourDoabs_tst.csv                         \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing maps"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/map_FourDoabs.nc                                     \
+     ../output/SERVIR_STK/map_FourDoabs_tst.nc                                 \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Terrestrial water storage anomalies, NorthWestBD
+#*******************************************************************************
+unt=$((unt+1))
+if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Terrestrial water storage anomalies, NorthWestBD"
+../src/shbaam_twsa.py                                                          \
+     ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
+     ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
+     ../input/SERVIR_STK/NorthWestBD.shp                                       \
+     ../output/SERVIR_STK/timeseries_NorthWestBD_tst.csv                       \
+     ../output/SERVIR_STK/map_NorthWestBD_tst.nc                               \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $? ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_NorthWestBD.csv                           \
+     ../output/SERVIR_STK/timeseries_NorthWestBD_tst.csv                       \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing maps"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/map_NorthWestBD.nc                                   \
+     ../output/SERVIR_STK/map_NorthWestBD_tst.nc                               \
      1e-6                                                                      \
      1e-6                                                                      \
      > $cmp_file

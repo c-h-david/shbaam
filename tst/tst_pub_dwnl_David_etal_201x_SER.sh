@@ -135,6 +135,8 @@ URL="http://rapid-hub.org/data/CI/SERVIR_STK"
 folder="../input/SERVIR_STK"
 list="                                                                         \
       Nepal.zip                                                                \
+      FourDoabs.zip                                                            \
+      NorthWestBD.zip                                                          \
      "
 
 #-------------------------------------------------------------------------------
@@ -159,7 +161,11 @@ URL="http://rapid-hub.org/data/CI/SERVIR_STK"
 folder="../output/SERVIR_STK"
 list="                                                                         \
       map_Nepal.nc                                                             \
+      map_FourDoabs.nc                                                         \
+      map_NorthWestBD.nc                                                       \
       timeseries_Nepal.csv                                                     \
+      timeseries_FourDoabs.csv                                                 \
+      timeseries_NorthWestBD.csv                                               \
      "
 
 #-------------------------------------------------------------------------------
@@ -177,6 +183,10 @@ done
 #Convert legacy files
 #*******************************************************************************
 unzip -nq ../input/SERVIR_STK/Nepal.zip -d ../input/SERVIR_STK/
+if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+unzip -nq ../input/SERVIR_STK/FourDoabs.zip -d ../input/SERVIR_STK/
+if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+unzip -nq ../input/SERVIR_STK/NorthWestBD.zip -d ../input/SERVIR_STK/
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 

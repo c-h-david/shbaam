@@ -1,0 +1,50 @@
+#*******************************************************************************
+#.appveyor.yml
+#*******************************************************************************
+
+#Purpose:
+#AppVeyor is a hosted continuous integration service, that is, it allows running
+#code directly from a repository and checking that the code acts as expected. 
+#The purpose of the .appveyor.yml file is to give instructions to AppVeyor on
+#how to do the work.
+#Author:
+#Cedric H. David, 2018-2018
+
+
+#*******************************************************************************
+#System specifications for AppVeyor
+#*******************************************************************************
+version: 1.0.{build}
+
+build: false
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27-64"
+      PYTHON_VERSION: "2.7.14"
+      PYTHON_ARCH: "64"
+
+
+#*******************************************************************************
+#Environment variables for different tests on multiple AppVeyor workers
+#*******************************************************************************
+#TO BE ADDED
+
+
+#*******************************************************************************
+#Installing SHBAAM
+#*******************************************************************************
+install:
+  - ps: Write-Host "This is where installation would take place"
+
+
+#*******************************************************************************
+#Testing SHBAAM
+#*******************************************************************************
+test_script:
+  - ps: Write-Host "This is where testing would take place"
+
+
+#*******************************************************************************
+#End
+#*******************************************************************************

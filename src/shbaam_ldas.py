@@ -145,7 +145,12 @@ payload['SHORTNAME']='GLDAS_VIC10_M'
 payload['SERVICE']='L34RS_LDAS'
 payload['VERSION']='1.02'
 payload['DATASET_VERSION']='001'
-payload['VARIABLES']='SoilM1,SWE'
+payload['VARIABLES']='SWE,SoilM1,SoilMoist1,Canint,Canopint'
+#Note, variable names change among models:
+#- Noah:   SWE, SoilMoist1, Canopint
+#- VIC:    SWE, SoilM1,     Canint
+#- Mosaic: SWE, SoilMoist1, Canopint
+#- CLM:    SWE, SoilMoist1, Canopint
 
 print('- Requesting a subset of GLDAS_VIC10_M.A200001.001.grb')
 r=requests.get(url, params=payload, auth=cred)
@@ -204,7 +209,7 @@ payload['SHORTNAME']='GLDAS_VIC10_M'
 payload['SERVICE']='L34RS_LDAS'
 payload['VERSION']='1.02'
 payload['DATASET_VERSION']='001'
-payload['VARIABLES']='SoilM1,SWE'
+payload['VARIABLES']='SWE,SoilM1,SoilMoist1,Canint,Canopint'
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Looping over all files

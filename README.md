@@ -102,7 +102,7 @@ PS C:\> Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object Syste
 Second, make sure that `git` is installed:
 
 ```
-PS C:\> choco install git.install
+PS C:\> choco install git
 ```
 
 Then download SHBAAM:

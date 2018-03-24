@@ -82,3 +82,93 @@ Testing scripts are currently under development.
 Note that the experienced users may find more up-to-date testing instructions 
 in
 [.travis.yml](https://github.com/c-h-david/shbaam/blob/master/.travis.yml).
+
+## Installation on Windows 10
+This document was written and tested on a machine with a **clean** image of
+Windows 10, 64-bit, installed. The following instructions were prepared for
+Windows **PowerShell** which shall be run in **administrator mode**.
+
+Note that the experienced users may find more up-to-date installation
+instructions in
+[.appveyor.yml](https://github.com/c-h-david/shbaam/blob/master/.appveyor.yml).
+
+### Download SHBAAM
+First, make sure that `choco` is installed:
+
+```
+PS C:\> Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+```
+
+Second, make sure that `git` is installed:
+
+```
+PS C:\> choco install git.install
+```
+
+Then download SHBAAM:
+
+```
+PS C:\> git clone https://github.com/c-h-david/shbaam
+```
+
+Finally, enter the SHBAAM directory:
+
+```
+PS C:\> cd shbaam\
+```
+
+### Install Chocolatey packages
+Software packages for Chocolatey are summarized in
+[requirements.cho](https://github.com/c-h-david/shbaam/blob/master/requirements.cho)
+and can be installed with `choco`. All packages can be installed at once using:
+
+```
+PS C:\> choco install --no-progress ((gc requirements.cho) -notmatch '^#' -match '\S')
+```
+
+> Alternatively, one may install the Chocolatey packages listed in
+> [requirements.cho](https://github.com/c-h-david/shbaam/blob/master/requirements.cho)
+> one by one, for example:
+>
+> ```
+> PS C:\> choco install miniconda
+> ```
+>
+> Note that by default, `wget` in is aliased to the PowerShell
+> `Invoke-WebRequest`, and one may to remove this alias before installing
+> `wget`:
+>
+> ```
+> PS C:\> rm Alias:wget
+> ```
+
+The Chocolatey installation of `conda`  does not update the environment
+variables, so the following action must be taken:
+
+```
+PS C:\> $ENV:PATH="C:\\ProgramData\\MiniConda2;C:\\ProgramData\\MiniConda2\\Scripts;$ENV:PATH"
+```
+
+### Install Anaconda packages
+Python packages from the Anaconda Package Repository are summarized in
+[requirements.cnd](https://github.com/c-h-david/shbaam/blob/master/requirements.cnd)
+and can be installed with `conda`. All packages can be installed at once using:
+
+```
+PS C:\> conda install -y -q -c anaconda --file requirements.cnd
+```
+
+> Alternatively, one may install the Anaconda packages listed in
+> [requirements.cnd](https://github.com/c-h-david/shbaam/blob/master/requirements.cnd)
+> one by one, for example:
+>
+> ```
+> PS C:\> conda install -y -q -c anaconda numpy
+> ```
+
+## Testing on Windows 10
+Testing scripts are currently under development.
+
+Note that the experienced users may find more up-to-date testing instructions
+in
+[.appveyor.yml](https://github.com/c-h-david/shbaam/blob/master/.appveyor.yml).

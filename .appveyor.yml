@@ -18,32 +18,33 @@ version: 1.0.{build}
 
 build: false
 
-environment:
-  matrix:
-    - PYTHON: "C:\\Python27-64"
-      PYTHON_VERSION: "2.7.14"
-      PYTHON_ARCH: "64"
-
+image:
+  - Visual Studio 2015
+  
 
 #*******************************************************************************
 #Environment variables for different tests on multiple AppVeyor workers
 #*******************************************************************************
-#TO BE ADDED
+environment:
+  matrix:
+    - TST_PUB_DWNL: 'tst_pub_dwnl_David_etal_201x_SER.sh'
+      TST_PUB_REPR: 'tst_pub_repr_David_etal_201x_SER.sh'
 
 
 #*******************************************************************************
 #Before installing SHBAAM
 #*******************************************************************************
-init:
+install:
   - ps: rm Alias:wget
-  - ps: choco install ((gc requirements.cho) -notmatch '^#' -match '\S')
+  - ps: choco install --no-progress ((gc requirements.cho) -notmatch '^#' -match '\S')
+  - ps: $ENV:PATH="C:\\ProgramData\\MiniConda2;C:\\ProgramData\\MiniConda2\\Scripts;$ENV:PATH"
 
 
 #*******************************************************************************
 #Installing SHBAAM
 #*******************************************************************************
-install:
-  - ps: Write-Host "This is where installation would take place"
+build_script:
+  - ps: conda install -y -q -c anaconda --file requirements.cnd
 
 
 #*******************************************************************************

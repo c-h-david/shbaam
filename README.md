@@ -149,6 +149,14 @@ variables, so the following action must be taken:
 PS C:\> $ENV:PATH="C:\\ProgramData\\MiniConda2;C:\\ProgramData\\MiniConda2\\Scripts;$ENV:PATH"
 ```
 
+The Chocolatey installation of `git`  does not update the environment
+variables to give access to `bash` and `sh`, so the following action must be
+taken:
+
+```
+C:\> $ENV:PATH="C:\\Program Files\\Git\\bin;$ENV:PATH"
+```
+
 ### Install Anaconda packages
 Python packages from the Anaconda Package Repository are summarized in
 [requirements.cnd](https://github.com/c-h-david/shbaam/blob/master/requirements.cnd)

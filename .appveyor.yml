@@ -36,7 +36,7 @@ environment:
 #*******************************************************************************
 init:
   - ps: rm Alias:wget
-  - ps: choco install ((get-content .\requirements.cho) -notmatch '^#')
+  - ps: choco install ((gc requirements.cho) -notmatch '^#' -match '\S')
 
 
 #*******************************************************************************

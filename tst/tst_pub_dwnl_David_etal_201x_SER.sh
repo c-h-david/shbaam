@@ -83,8 +83,9 @@ done
 #Check downloads
 #-------------------------------------------------------------------------------
 cd $folder
-md5sum -c CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc.md5                           \
-          LAND_MASK.CRIv01.nc.md5
+md5sum -c CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc.md5
+if [ $? -gt 0 ] ; then echo "Problem Checking file" >&2 ; exit 44 ; fi
+md5sum -c LAND_MASK.CRIv01.nc.md5
 if [ $? -gt 0 ] ; then echo "Problem Checking file" >&2 ; exit 44 ; fi
 cd -
 
@@ -97,7 +98,6 @@ cd -
 #Download parameters
 #-------------------------------------------------------------------------------
 URL="ftp://podaac.jpl.nasa.gov/allData/tellus/retired/L3/mascon/RL05/JPL/CRI/netcdf/"
-
 
 folder="../input/GRACE"
 
@@ -121,6 +121,7 @@ done
 #-------------------------------------------------------------------------------
 cd $folder
 md5sum -c GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc.md5
+if [ $? -gt 0 ] ; then echo "Problem Checking file" >&2 ; exit 44 ; fi
 cd -
 
 

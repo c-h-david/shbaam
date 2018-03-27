@@ -42,7 +42,7 @@
 #*******************************************************************************
 echo "********************"
 echo "Downloading files from:   http://dx.doi.org/xx.xxxx/xxxxxx"
-echo "                          ftp://podaac.jpl.nasa.gov/allData/tellus/L3/mascon/RL05/JPL/CRI/netcdf/"
+echo "                          https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/tellus/L3/mascon/RL05/JPL/CRI/netcdf/"
 echo "which correspond to   :   http://dx.doi.org/xx.xxxx/xxxxxx/"
 echo "                          http://dx.doi.org/10.1002/2016WR019344"
 echo "These files are under a Creative Commons Attribution (CC BY) license."
@@ -57,7 +57,7 @@ echo "********************"
 #-------------------------------------------------------------------------------
 #Download parameters
 #-------------------------------------------------------------------------------
-URL="ftp://podaac.jpl.nasa.gov/allData/tellus/L3/mascon/RL05/JPL/CRI/netcdf/"
+URL="https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/tellus/L3/mascon/RL05/JPL/CRI/netcdf/"
 
 folder="../input/GRACE"
 
@@ -97,8 +97,7 @@ cd -
 #-------------------------------------------------------------------------------
 #Download parameters
 #-------------------------------------------------------------------------------
-URL="ftp://podaac.jpl.nasa.gov/allData/tellus/retired/L3/mascon/RL05/JPL/CRI/netcdf/"
-
+URL="https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/tellus/retired/L3/mascon/RL05/JPL/CRI/netcdf/"
 folder="../input/GRACE"
 
 list="                                                                         \

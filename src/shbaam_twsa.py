@@ -378,7 +378,8 @@ print('- Populate global attributes')
 dt=datetime.datetime.utcnow()
 dt=dt.replace(microsecond=0)
 #Current UTC time without the microseconds 
-vsn=subprocess.Popen('bash ../version.sh',stdout=subprocess.PIPE).communicate()
+vsn=subprocess.Popen('bash ../version.sh',                                     \
+                     stdout=subprocess.PIPE,shell=True).communicate()
 vsn=vsn[0]
 vsn=vsn.rstrip()
 #Version of SHBAAM

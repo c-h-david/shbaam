@@ -33,6 +33,7 @@
 #Notes on tricks used here
 #*******************************************************************************
 #wget -nv -nc          --> Non-verbose (silent), No-clobber (don't overwrite) 
+#wget 2>&1             --> wget directs messages to stderr (issue for Windows)
 #tar --strip-components--> Remove leading directory components on extraction
 #tar -C                --> Specify where to extract 
 
@@ -75,7 +76,7 @@ list="                                                                         \
 mkdir -p $folder
 for file in $list
 do
-     wget -nv -nc $URL/$file -P $folder
+     wget -nv -nc $URL/$file -P $folder 2>&1
      if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
 done
 
@@ -111,7 +112,7 @@ list="                                                                         \
 mkdir -p $folder
 for file in $list
 do
-     wget -nv -nc $URL/$file -P $folder
+     wget -nv -nc $URL/$file -P $folder 2>&1
      if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
 done
 
@@ -145,7 +146,7 @@ list="                                                                         \
 mkdir -p $folder
 for file in $list
 do
-     wget -nv -nc $URL/$file -P $folder
+     wget -nv -nc $URL/$file -P $folder 2>&1
      if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
 done
 
@@ -174,7 +175,7 @@ list="                                                                         \
 mkdir -p $folder
 for file in $list
 do
-     wget -nv -nc $URL/$file -P $folder
+     wget -nv -nc $URL/$file -P $folder 2>&1
      if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
 done
 

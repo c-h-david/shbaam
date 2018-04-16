@@ -83,6 +83,81 @@ Note that the experienced users may find more up-to-date testing instructions
 in
 [.travis.yml](https://github.com/c-h-david/shbaam/blob/master/.travis.yml).
 
+## Installation on MacOS
+This document was written and tested on a machine with a **clean** image of
+MacOS High Sierra (Version 10.13.4) installed.
+
+Note that the experienced users may find more up-to-date installation
+instructions in
+[.travis.yml](https://github.com/c-h-david/shbaam/blob/master/.travis.yml).
+
+### Download SHBAAM
+First, make sure that `brew` is installed:
+
+```
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Second, make sure that `git` is installed:
+
+```
+$ which git
+/usr/bin/git
+```
+
+Then download SHBAAM:
+
+```
+$ git clone https://github.com/c-h-david/shbaam
+```
+
+Finally, enter the SHBAAM directory:
+
+```
+$ cd shbaam/
+```
+
+### Install Homebrew packages
+Software packages for Homebrew are summarized in
+[requirements.brw](https://github.com/c-h-david/shbaam/blob/master/requirements.brw)
+and can be installed with `brew`. All packages can be installed at once using:
+
+```
+$ brew reinstall $(grep -v -E '(^#|^$)' requirements.brw)
+```
+
+> Alternatively, one may install the Hoembrew packages listed in
+> [requirements.brw](https://github.com/c-h-david/shbaam/blob/master/requirements.brw)
+> one by one, for example:
+>
+> ```
+> $ brew reinstall python@2
+>```
+
+### Install Python packages
+Python packages from the Python Package Index (PyPI) are summarized in
+[requirements.pip](https://github.com/c-h-david/shbaam/blob/master/requirements.pip)
+and can be installed with `pip`. All packages can be installed at once using:
+
+```
+$ sudo pip install -r requirements.pip
+```
+
+> Alternatively, one may install the PyPI packages listed in
+> [requirements.pip](https://github.com/c-h-david/shbaam/blob/master/requirements.pip)
+> one by one, for example:
+>
+> ```
+> $ sudo pip install numpy==1.9.3
+> ```
+
+## Testing on MacOS
+Testing scripts are currently under development.
+
+Note that the experienced users may find more up-to-date testing instructions
+in
+[.travis.yml](https://github.com/c-h-david/shbaam/blob/master/.travis.yml).
+
 ## Installation on Windows 10
 This document was written and tested on a machine with a **clean** image of
 Windows 10, 64-bit, installed. The following instructions were prepared for

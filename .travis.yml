@@ -14,13 +14,13 @@
 #*******************************************************************************
 #System specifications for Travis CI
 #*******************************************************************************
-language: generic            #Language cannot yet be 'python' for OSX in Travis
-
 matrix:
   include:
     - os: linux
+      language: generic
       sudo: required
     - os: osx
+      language: generic
   allow_failures:
     - os: osx
 

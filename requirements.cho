@@ -27,6 +27,7 @@ git
 #Needed for AppVeyor
 #-------------------------------------------------------------------------------
 wget
+gnuwin32-sed.install
 miniconda
 
 

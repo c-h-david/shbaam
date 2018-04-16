@@ -38,6 +38,7 @@ install:
   - ps: rm Alias:wget
   - ps: choco install --no-progress ((gc requirements.cho) -notmatch '^#' -match '\S')
   - ps: $ENV:PATH="C:\\ProgramData\\MiniConda2;C:\\ProgramData\\MiniConda2\\Scripts;$ENV:PATH"
+  - ps: $ENV:PATH="C:\\Program Files (x86)\\GnuWin32\\bin;$ENV:PATH"
 
 
 #*******************************************************************************

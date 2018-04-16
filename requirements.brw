@@ -20,6 +20,9 @@
 python@2
 pypy
 
+md5sha1sum
+wget
+
 hdf5
 netcdf
 

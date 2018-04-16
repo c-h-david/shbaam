@@ -56,9 +56,14 @@ before_install:
 #-------------------------------------------------------------------------------
 - uname -a
 - echo $TRAVIS_OS_NAME
-- gcc --version
+- which python
 - python --version
+- ls -l $(which python)
+- ls -l $(which -a python)
+- which pip
 - pip --version
+- ls -l $(which pip)
+- ls -l $(which -a pip)
 
 
 #*******************************************************************************

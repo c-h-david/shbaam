@@ -48,7 +48,6 @@ before_install:
 #Specific to OSX
 #-------------------------------------------------------------------------------
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew --version                  ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew tap homebrew/science       ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew reinstall $(grep -v -E '(^#|^$)' requirements.brw) ; fi
 
 #-------------------------------------------------------------------------------

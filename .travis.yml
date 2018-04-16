@@ -70,7 +70,6 @@ before_install:
 #Installing SHBAAM
 #*******************************************************************************
 install:
-- cd $TRAVIS_BUILD_DIR
 - sudo pip install -r requirements.pip
 
 
@@ -78,7 +77,6 @@ install:
 #Testing SHBAAM
 #*******************************************************************************
 script:
-- cd $TRAVIS_BUILD_DIR
 - cd ./tst/
 - echo $TST_PUB_DWNL && $TST_PUB_DWNL
 - echo $TST_PUB_REPR && $TST_PUB_REPR

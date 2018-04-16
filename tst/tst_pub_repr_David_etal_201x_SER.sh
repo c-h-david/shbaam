@@ -89,7 +89,7 @@ echo "- Terrestrial water storage anomalies, Nepal"
      ../output/SERVIR_STK/timeseries_Nepal_tst.csv                             \
      ../output/SERVIR_STK/map_Nepal_tst.nc                                     \
      > $run_file
-x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $? ; fi
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \
@@ -133,7 +133,7 @@ echo "- Terrestrial water storage anomalies, FourDoabs"
      ../output/SERVIR_STK/timeseries_FourDoabs_tst.csv                         \
      ../output/SERVIR_STK/map_FourDoabs_tst.nc                                 \
      > $run_file
-x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $? ; fi
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \
@@ -177,7 +177,7 @@ echo "- Terrestrial water storage anomalies, NorthWestBD"
      ../output/SERVIR_STK/timeseries_NorthWestBD_tst.csv                       \
      ../output/SERVIR_STK/map_NorthWestBD_tst.nc                               \
      > $run_file
-x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $? ; fi
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \

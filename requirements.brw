@@ -22,7 +22,6 @@ python@2
 md5sha1sum
 wget
 
-hdf5
 netcdf
 
 gdal

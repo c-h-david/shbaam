@@ -86,10 +86,18 @@ echo "- Terrestrial water storage anomalies, Nepal"
      ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/Nepal.shp                                             \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
      ../output/SERVIR_STK/timeseries_Nepal_tst.csv                             \
      ../output/SERVIR_STK/map_Nepal_tst.nc                                     \
      > $run_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing shapefiles"
+./tst_cmp_shp.py                                                               \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt.shp                                \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \
@@ -130,10 +138,18 @@ echo "- Terrestrial water storage anomalies, FourDoabs"
      ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/FourDoabs.shp                                         \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
      ../output/SERVIR_STK/timeseries_FourDoabs_tst.csv                         \
      ../output/SERVIR_STK/map_FourDoabs_tst.nc                                 \
      > $run_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing shapefiles"
+./tst_cmp_shp.py                                                               \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt.shp                                \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \
@@ -174,10 +190,18 @@ echo "- Terrestrial water storage anomalies, NorthWestBD"
      ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/NorthWestBD.shp                                       \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
      ../output/SERVIR_STK/timeseries_NorthWestBD_tst.csv                       \
      ../output/SERVIR_STK/map_NorthWestBD_tst.nc                               \
      > $run_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing shapefiles"
+./tst_cmp_shp.py                                                               \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt.shp                                \
+     ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \

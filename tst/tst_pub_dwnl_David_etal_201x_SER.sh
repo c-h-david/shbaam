@@ -163,6 +163,7 @@ done
 URL="http://rapid-hub.org/data/CI/SERVIR_STK"
 folder="../output/SERVIR_STK"
 list="                                                                         \
+      GRCTellus.JPL.pnt.zip                                                    \
       map_Nepal.nc                                                             \
       map_FourDoabs.nc                                                         \
       map_NorthWestBD.nc                                                       \
@@ -190,6 +191,8 @@ if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 unzip -nq ../input/SERVIR_STK/FourDoabs.zip -d ../input/SERVIR_STK/
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 unzip -nq ../input/SERVIR_STK/NorthWestBD.zip -d ../input/SERVIR_STK/
+if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+unzip -nq ../output/SERVIR_STK/GRCTellus.JPL.pnt.zip -d ../output/SERVIR_STK/
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 

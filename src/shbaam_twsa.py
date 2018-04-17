@@ -123,6 +123,22 @@ ZV_grc_lat=f.variables['lat']
 ZV_grc_time=f.variables['time']
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#Get the interval sizes
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ZS_grc_lon_stp=abs(ZV_grc_lon[1]-ZV_grc_lon[0])
+print(' - The interval size for longitudes is: '+str(ZS_grc_lon_stp))
+
+ZS_grc_lat_stp=abs(ZV_grc_lat[1]-ZV_grc_lat[0])
+print(' - The interval size for latitudes is: '+str(ZS_grc_lat_stp))
+
+if len(ZV_grc_time) > 1:
+     ZS_grc_time_stp=abs(ZV_grc_time[1]-ZV_grc_time[0])
+     print(' - The interval size for time is: '+str(ZS_grc_time_stp))
+else:
+     ZS_grc_time_stp=0
+     print(' - No interval size for time (one unique time step)')
+
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Get fill values
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 ZS_grc_fil=netCDF4.default_fillvals['f4']
@@ -265,8 +281,8 @@ ZV_dom_sqm=[0]*IS_dom_tot
 for JS_dom_tot in range(IS_dom_tot):
      JS_grc_lat=IV_dom_lat[JS_dom_tot]
      ZS_grc_lat=ZV_grc_lat[JS_grc_lat]
-     ZV_dom_sqm[JS_dom_tot]=6371000*math.radians(0.5)                          \
-                           *6371000*math.radians(0.5)                          \
+     ZV_dom_sqm[JS_dom_tot]=6371000*math.radians(ZS_grc_lat_stp)               \
+                           *6371000*math.radians(ZS_grc_lon_stp)               \
                            *math.cos(math.radians(ZS_grc_lat))
 
 

@@ -7,7 +7,8 @@
 #Compute Terrestrial Water Storage Anomalies from GRACE for a given shapefile.
 #Given GRACE data and associated scale factors, along with a shapefile 
 #referenced on a Geographic Coordinate System (i.e. longitude, latitude), this 
-#script computes liquid water equivalent thickness anomaly (in cm) for every 
+#script creates an intermediate shapefile with points representative of the grid
+#cells, computes liquid water equivalent thickness anomaly (in cm) for every
 #time step of the GRACE data and produces a CSV time series that is spatially 
 #averaged over the shapefile, as well as a netCDF time series focusing on the 
 #shapefile. If the shapefile touches coastal grid cells that have NoData in the 
@@ -27,6 +28,7 @@ import numpy
 import datetime
 import fiona
 import shapely.geometry
+import shapely.prepared
 import rtree
 import math
 import csv
@@ -38,23 +40,25 @@ import csv
 # 1 - shb_grc_ncf
 # 2 - shb_fct_ncf
 # 3 - shb_pol_shp
-# 4 - shb_wsa_csv
-# 5 - shb_wsa_ncf
+# 4 - shb_pnt_shp
+# 5 - shb_wsa_csv
+# 6 - shb_wsa_ncf
 
 
 #*******************************************************************************
 #Get command line arguments
 #*******************************************************************************
 IS_arg=len(sys.argv)
-if IS_arg != 6:
-     print('ERROR - 5 and only 5 arguments can be used')
+if IS_arg != 7:
+     print('ERROR - 6 and only 6 arguments can be used')
      raise SystemExit(22) 
 
 shb_grc_ncf=sys.argv[1]
 shb_fct_ncf=sys.argv[2]
 shb_pol_shp=sys.argv[3]
-shb_wsa_csv=sys.argv[4]
-shb_wsa_ncf=sys.argv[5]
+shb_pnt_shp=sys.argv[4]
+shb_wsa_csv=sys.argv[5]
+shb_wsa_ncf=sys.argv[6]
 
 
 #*******************************************************************************
@@ -64,6 +68,7 @@ print('Command line inputs')
 print(' - '+shb_grc_ncf)
 print(' - '+shb_fct_ncf)
 print(' - '+shb_pol_shp)
+print(' - '+shb_pnt_shp)
 print(' - '+shb_wsa_csv)
 print(' - '+shb_wsa_ncf)
 
@@ -212,17 +217,57 @@ print(' - The number of polygon features is: '+str(IS_pol_tot))
 
 
 #*******************************************************************************
-#Create spatial index for the bounds of each polygon feature
+#Create a point shapefile with all the GRACE grid cells
 #*******************************************************************************
-print('Create spatial index for the bounds of each polygon feature')
+print('Create a point shapefile with all the GRACE grid cells')
+
+shb_pol_drv=shb_pol_lay.driver
+shb_pnt_drv=shb_pol_drv
+
+shb_pol_crs=shb_pol_lay.crs
+shb_pnt_crs=shb_pol_crs.copy()
+
+shb_pnt_sch={'geometry': 'Point',                                              \
+             'properties': {'JS_grc_lon': 'int:4',                             \
+                            'JS_grc_lat': 'int:4'}}
+
+with fiona.open(shb_pnt_shp,'w',driver=shb_pnt_drv,                            \
+                                crs=shb_pnt_crs,                               \
+                                schema=shb_pnt_sch) as shb_pnt_lay:
+     for JS_grc_lon in range(IS_grc_lon):
+          ZS_grc_lon=ZV_grc_lon[JS_grc_lon]
+          if (ZS_grc_lon > 180):
+               ZS_grc_lon=ZS_grc_lon-360
+               #Shift GRACE longitude range from [0;360] to [-180;180]
+          for JS_grc_lat in range(IS_grc_lat):
+               ZS_grc_lat=ZV_grc_lat[JS_grc_lat]
+               shb_pnt_prp={'JS_grc_lon': JS_grc_lon, 'JS_grc_lat': JS_grc_lat}
+               shb_pnt_geo=shapely.geometry.mapping(                           \
+                                shapely.geometry.Point((ZS_grc_lon,ZS_grc_lat)))
+               shb_pnt_lay.write({                                             \
+                                  'properties': shb_pnt_prp,                   \
+                                  'geometry': shb_pnt_geo,                     \
+                                  })
+
+print(' - New shapefile created')
+
+
+#*******************************************************************************
+#Create spatial index for the bounds of each point feature
+#*******************************************************************************
+print('Create spatial index for the bounds of each point feature')
+
+shb_pnt_lay=fiona.open(shb_pnt_shp, 'r')
 
 index=rtree.index.Index()
-for shb_pol_fea in shb_pol_lay:
-     shb_pol_fid=int(shb_pol_fea['id'])
+for shb_pnt_fea in shb_pnt_lay:
+     shb_pnt_fid=int(shb_pnt_fea['id'])
      #the first argument of index.insert has to be 'int', not 'long' or 'str'
-     shb_pol_shy=shapely.geometry.shape(shb_pol_fea['geometry'])
-     index.insert(shb_pol_fid, shb_pol_shy.bounds)
+     shb_pnt_shy=shapely.geometry.shape(shb_pnt_fea['geometry'])
+     index.insert(shb_pnt_fid, shb_pnt_shy.bounds)
      #creates an index between the feature ID and the bounds of that feature
+
+print(' - Spatial index created')
 
 
 #*******************************************************************************
@@ -234,24 +279,20 @@ IS_dom_tot=0
 IV_dom_lon=[]
 IV_dom_lat=[]
 
-for JS_grc_lon in range(IS_grc_lon):
-     ZS_grc_lon=ZV_grc_lon[JS_grc_lon]
-     if (ZS_grc_lon > 180):
-          ZS_grc_lon=ZS_grc_lon-360
-          #Shift GRACE longitude range from [0;360] to [-180;180]
-
-     for JS_grc_lat in range(IS_grc_lat):
-          ZS_grc_lat=ZV_grc_lat[JS_grc_lat]
-          shb_pnt_shy=shapely.geometry.Point(ZS_grc_lon,ZS_grc_lat)
-          #a shapely point now exists for a given GRACE grid cell
-          for shb_pol_fid in                                                 \
-              [int(x) for x in list(index.intersection(shb_pnt_shy.bounds))]:
-               shb_pol_fea=shb_pol_lay[shb_pol_fid]
-               shb_pol_shy=shapely.geometry.shape(shb_pol_fea['geometry'])
-               if (shb_pnt_shy.within(shb_pol_shy)):
-                    IV_dom_lon.append(JS_grc_lon)
-                    IV_dom_lat.append(JS_grc_lat)
-                    IS_dom_tot=IS_dom_tot+1
+for shb_pol_fea in shb_pol_lay:
+     shb_pol_shy=shapely.geometry.shape(shb_pol_fea['geometry'])
+     shb_pol_pre=shapely.prepared.prep(shb_pol_shy)
+     #a 'prepared' geometry allows for faster processing after
+     for shb_pnt_fid in [int(x) for x in                                       \
+                                  list(index.intersection(shb_pol_shy.bounds))]:
+          shb_pnt_fea=shb_pnt_lay[shb_pnt_fid]
+          shb_pnt_shy=shapely.geometry.shape(shb_pnt_fea['geometry'])
+          if shb_pol_pre.contains(shb_pnt_shy):
+               JS_dom_lon=shb_pnt_fea['properties']['JS_grc_lon']
+               JS_dom_lat=shb_pnt_fea['properties']['JS_grc_lat']
+               IV_dom_lon.append(JS_dom_lon)
+               IV_dom_lat.append(JS_dom_lat)
+               IS_dom_tot=IS_dom_tot+1
  
 print(' - The number of grid cells found is: '+str(IS_dom_tot))
 

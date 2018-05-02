@@ -8,7 +8,7 @@
 #only if git is installed and if the SHBAAM git repository is present.  
 #Otherwise 'unknown' is used.  
 #Author:
-#Cedric H. David, 2017-2017
+#Cedric H. David, 2017-2018
 
 
 #*******************************************************************************

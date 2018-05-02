@@ -7,7 +7,7 @@
 #Compare two shapefiles. The geometries are first checked, then all the 
 #attributes of the first file are checked within the second file.
 #Author:
-#Cedric H. David, 2016-2017
+#Cedric H. David, 2016-2018
 
 
 #*******************************************************************************

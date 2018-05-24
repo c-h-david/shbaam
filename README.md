@@ -5,6 +5,8 @@
 
 [![Build Status](https://ci.appveyor.com/api/projects/status/github/c-h-david/shbaam?branch=master&svg=true)](https://ci.appveyor.com/project/c-h-david/shbaam)
 
+[![Docker Build](https://img.shields.io/docker/automated/chdavid/shbaam.svg)](https://hub.docker.com/r/chdavid/shbaam/)
+
 Satellite Hydrology Bits Analysis And Mapping (SHBAAM) is a Python and bash 
 shell toolbox that combines many repetitive pre and post-processing tasks that 
 are common to studying the studying the terrestrial water cycle with satellite 
@@ -13,6 +15,39 @@ data.
 Such tasks include the preparation of files corresponding to:
 
 - Terrestrial Water Storage Anomaly using GRACE data
+
+## Installation with Docker
+Installing SHBAAM is **by far the easiest with Docker**. This document was
+written and tested using
+[Docker Community Edition](https://www.docker.com/community-edition#/download)
+which is available for free and can be installed on a wide variety of operating
+systems. To install it, follow the instructions in the link provided above.
+
+Note that the experienced users may find more up-to-date installation
+instructions in
+[Dockerfile](https://github.com/c-h-david/shbaam/blob/master/Dockerfile).
+
+### Download SHBAAM
+Downloading SHBAAM with Docker can be done using:
+
+```
+$ docker pull chdavid/shbaam
+```
+
+### Install packages
+The beauty of Docker is that there is **no need to install anymore packages**.
+SHBAAM is ready to go! To run it, just use:
+
+```
+$ docker run --rm --name shbaam -it chdavid/shbaam
+```
+
+## Testing with Docker
+Testing scripts are currently under development.
+
+Note that the experienced users may find more up-to-date testing instructions
+in
+[.docker.test.yml](https://github.com/c-h-david/shbaam/blob/master/.docker.test.yml).
 
 ## Installation on Ubuntu
 This document was written and tested on a machine with a **clean** image of 

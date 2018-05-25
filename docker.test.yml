@@ -1,13 +1,13 @@
 #*******************************************************************************
-#.docker.test.yml
+#docker.test.yml
 #*******************************************************************************
 
 #Purpose:
 #Docker-compose can be used to build a Docker image from a Dockerfile and run
 #the image in a Docker container using a specific command that performs a series
 #of tests on the software included in the image. The purpose of this
-#.docker.test.yml file is to give instructions to docker-compose on how to do
-#the work.
+#docker.test.yml file is to give instructions to docker-compose on how to do the
+#work.
 #Author:
 #Cedric H. David, 2018-2018
 
@@ -15,10 +15,10 @@
 #*******************************************************************************
 #Usage
 #*******************************************************************************
-#docker-compose -f .docker.test.yml up   #Create image if it does not exist, and
+#docker-compose -f docker.test.yml up    #Create image if it does not exist, and
                                          #run it in a container w/ the command.
                                          #Note: command has no impact on image.
-#docker-compose -f .docker.test.yml down #Remove the container, not the image.
+#docker-compose -f docker.test.yml down  #Remove the container, not the image.
 
 
 #*******************************************************************************

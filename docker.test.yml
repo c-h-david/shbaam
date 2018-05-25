@@ -29,8 +29,6 @@ sut:
      #The name of the Docker image that is created will be shbaam_sut, this name
      #is generated automatically based on the folder where docker-compose is run
      #(shbaam) and the service name (sut, i.e. 'system under test')
-     container_name: shbaam_sut
-     #Here we choose the container name to be the same as the image
      command: bash -xc "cd ./tst/;"\
                        "./tst_pub_dwnl_David_etal_201x_SER.sh;"\ 
                        "./tst_pub_repr_David_etal_201x_SER.sh"

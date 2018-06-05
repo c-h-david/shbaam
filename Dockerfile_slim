@@ -1,14 +1,60 @@
+#*******************************************************************************
+#Dockerfile_slim
+#*******************************************************************************
+
+#Purpose:
+#This file describes the operating system prerequisites for SHBAAM, and is used
+#by the Docker software. Note that this '_slim' version makes for a small image.
+#Author:
+#Wyte Krongapiradee, and Cedric H. David, 2018-2018
+
+
+#*******************************************************************************
+#Usage
+#*******************************************************************************
+#docker build -t debian:shbaam -f Dockerfile_slim .      #Create image
+#docker run --rm --name debian_shbaam -it debian:shbaam  #Run image in container
+#docker save -o debian_shbaam.tar debian:shbaam          #Save a copy of image
+#docker load -i debian_shbaam.tar                        #Load a saved image
+
+
+#*******************************************************************************
+#Operating System
+#*******************************************************************************
 FROM debian:stable-slim
 
+
+#*******************************************************************************
+#Copy files into Docker image (this ignores the files listed in .dockerignore)
+#*******************************************************************************
 COPY . ./shbaam
 WORKDIR /shbaam
 
+
+#*******************************************************************************
+#Operating System Requirements
+#*******************************************************************************
 RUN apt-get update && \
     apt-get install -y --no-install-recommends python libspatialindex-c4v5 && \
     rm -rf /var/lib/apt/lists/*
 
+
+#*******************************************************************************
+#Python requirements
+#*******************************************************************************
 ADD https://bootstrap.pypa.io/get-pip.py .
 RUN python get-pip.py --no-cache-dir && \
     rm get-pip.py
 
 RUN pip install Fiona netCDF4==1.3.1 numpy Rtree Shapely --no-cache-dir
+
+
+#*******************************************************************************
+#Intended (default) command at execution of image (not used during build)
+#*******************************************************************************
+CMD  /bin/bash
+
+
+#*******************************************************************************
+#End
+#*******************************************************************************

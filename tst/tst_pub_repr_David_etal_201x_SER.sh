@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #*******************************************************************************
 #tst_pub_repr_David_etal_SER.sh
 #*******************************************************************************
@@ -76,7 +76,7 @@ unt=0
 #Terrestrial water storage anomalies, Nepal
 #*******************************************************************************
 unt=$((unt+1))
-if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
 echo "Running unit test $unt/x"
 run_file=tmp_run_$unt.txt
 cmp_file=tmp_cmp_$unt.txt
@@ -128,7 +128,7 @@ fi
 #Terrestrial water storage anomalies, FourDoabs
 #*******************************************************************************
 unt=$((unt+1))
-if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
 echo "Running unit test $unt/x"
 run_file=tmp_run_$unt.txt
 cmp_file=tmp_cmp_$unt.txt
@@ -180,7 +180,7 @@ fi
 #Terrestrial water storage anomalies, NorthWestBD
 #*******************************************************************************
 unt=$((unt+1))
-if (("$unt" >= "$fst")) && (("$unt" <= "$lst")) ; then
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
 echo "Running unit test $unt/x"
 run_file=tmp_run_$unt.txt
 cmp_file=tmp_cmp_$unt.txt

@@ -12,14 +12,15 @@
 #*******************************************************************************
 #Usage
 #*******************************************************************************
-#docker build -t ubuntu:shbaam -f Dockerfile .           #Create image
-#docker run --rm --name ubuntu_shbaam -it ubuntu:shbaam  #Run image in container
-#docker run --rm --name ubuntu_shbaam          \
+#docker build -t shbaam:myimage -f Dockerfile .          #Create image
+#docker run --rm --name shbaam_mycontainer     \
+#           -it shbaam:myimage                           #Run image in container
+#docker run --rm --name shbaam_mycontainer     \
 #           -v $PWD/input:/home/shbaam/input   \
 #           -v $PWD/output:/home/shbaam/output \
-#           -it ubuntu:shbaam                            #Run and map volumes
-#docker save -o ubuntu_shbaam.tar ubuntu:shbaam          #Save a copy of image
-#docker load -i ubuntu_shbaam.tar                        #Load a saved image
+#           -it shbaam:myimage                           #Run and map volumes
+#docker save -o shbaam_myimage.tar shbaam:myimage        #Save a copy of image
+#docker load -i shbaam_myimage.tar                       #Load a saved image
 
 
 #*******************************************************************************

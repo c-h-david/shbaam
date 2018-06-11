@@ -12,10 +12,16 @@
 #*******************************************************************************
 #Usage
 #*******************************************************************************
-#docker build -t debian:shbaam -f Dockerfile_slim .      #Create image
-#docker run --rm --name debian_shbaam -it debian:shbaam  #Run image in container
-#docker save -o debian_shbaam.tar debian:shbaam          #Save a copy of image
-#docker load -i debian_shbaam.tar                        #Load a saved image
+#docker build -t shbaam:myimage-slim -f Dockerfile_slim .#Create image
+#docker run --rm --name shbaam_mycontainer_slim\
+#           -it shbaam:myimage-slim                      #Run image in container
+#docker run --rm --name shbaam_mycontainer_slim\
+#           -v $PWD/input:/home/shbaam/input   \
+#           -v $PWD/output:/home/shbaam/output \
+#           -it shbaam:myimage-slim                      #Run and map volumes
+#docker save -o shbaam_myimage_slim.tar        \
+#               shbaam:myimage-slim                      #Save a copy of image
+#docker load -i shbaam_myimage_slim.tar                  #Load a saved image
 
 
 #*******************************************************************************

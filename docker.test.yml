@@ -34,6 +34,10 @@ sut:
                        "./tst_pub_repr_David_etal_201x_SER.sh"
      #bash -c (string) allows to make the code more readable here
      #bash -x (verbose) allows to make the commands more readable at runtime
+     volumes:
+          - ./input:/home/shbaam/input
+          - ./output:/home/shbaam/output
+     #Volumes map the input & output folders in the local HD to the container
 
 
 #*******************************************************************************

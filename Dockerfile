@@ -14,6 +14,10 @@
 #*******************************************************************************
 #docker build -t ubuntu:shbaam -f Dockerfile .           #Create image
 #docker run --rm --name ubuntu_shbaam -it ubuntu:shbaam  #Run image in container
+#docker run --rm --name ubuntu_shbaam          \
+#           -v $PWD/input:/home/shbaam/input   \
+#           -v $PWD/output:/home/shbaam/output \
+#           -it ubuntu:shbaam                            #Run and map volumes
 #docker save -o ubuntu_shbaam.tar ubuntu:shbaam          #Save a copy of image
 #docker load -i ubuntu_shbaam.tar                        #Load a saved image
 

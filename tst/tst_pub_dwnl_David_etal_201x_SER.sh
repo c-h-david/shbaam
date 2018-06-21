@@ -76,6 +76,7 @@ do
      ../src/shbaam_ldas.py $lsm 2002-04-01T00:00:00 2002-12-31T23:59:59 $folder\
                            > tmp_dwl.txt
      if [ $? -gt 0 ] ; then echo "Problem downloading $lsm" >&2 ; exit 44 ; fi
+     cat tmp_dwl.txt
      rm tmp_dwl.txt
      echo "GLDAS files for $lsm downloaded"
 done

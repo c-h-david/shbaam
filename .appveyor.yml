@@ -35,6 +35,7 @@ environment:
 #Before installing SHBAAM
 #*******************************************************************************
 install:
+  - ps: set-content ~/_netrc "machine urs.earthdata.nasa.gov login $ENV:NETRC_LOGIN_EDATA  password $ENV:NETRC_PSWRD_EDATA"
   - ps: rm Alias:wget
   - ps: choco install --no-progress ((gc requirements.cho) -notmatch '^#' -match '\S')
   - ps: $ENV:PATH="C:\\ProgramData\\MiniConda2;C:\\ProgramData\\MiniConda2\\Scripts;$ENV:PATH"

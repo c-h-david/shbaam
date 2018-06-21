@@ -40,7 +40,7 @@ before_install:
 #-------------------------------------------------------------------------------
 #Create .netrc file for secure downloads (users need their own credentials)
 #-------------------------------------------------------------------------------
-- echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA  password $NETRC_PSWRD_EDATA" >> .netrc
+- echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc
 
 #-------------------------------------------------------------------------------
 #Specific to Linux

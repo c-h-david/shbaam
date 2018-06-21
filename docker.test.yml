@@ -29,7 +29,7 @@ sut:
      #The name of the Docker image that is created will be shbaam_sut, this name
      #is generated automatically based on the folder where docker-compose is run
      #(shbaam) and the service name (sut, i.e. 'system under test')
-     command: bash -xc "echo machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA  password $NETRC_PSWRD_EDATA >> .netrc;"\
+     command: bash -xc "echo machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA >> ~/.netrc;"\
                        "cd ./tst/;"\
                        "./tst_pub_dwnl_David_etal_201x_SER.sh;"\ 
                        "./tst_pub_repr_David_etal_201x_SER.sh"

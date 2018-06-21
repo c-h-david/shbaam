@@ -134,7 +134,7 @@ print('- The credentials were obtained from ~/.netrc file')
 
 print('Checking that service and credentials work for one known file')
 
-url='http://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi'
+url='https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi'
 payload={}
 payload['FILENAME']='/data/GLDAS_V1/GLDAS_VIC10_M/2000/'                       \
                    +'GLDAS_VIC10_M.A200001.001.grb'
@@ -155,7 +155,7 @@ payload['VARIABLES']='SWE,SoilM1,SoilMoist1,Canint,Canopint'
 print('- Requesting a subset of GLDAS_VIC10_M.A200001.001.grb')
 r=requests.get(url, params=payload, auth=cred)
 #Downloads data from:
-#http://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi
+#https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi
 #     ?FILENAME=/data/GLDAS_V1/GLDAS_VIC10_M/2000/
 #     GLDAS_VIC10_M.A200001.001.grb
 #     &FORMAT=bmM0Lw
@@ -198,7 +198,7 @@ s.auth=cred
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 print('- Initializing URL and payload')
 
-url='http://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi'
+url='https://hydro1.gesdisc.eosdis.nasa.gov/daac-bin/OTF/HTTP_services.cgi'
 payload={}
 payload['FILENAME']='/data/GLDAS_V1/GLDAS_VIC10_M/2000/'                       \
                    +'GLDAS_VIC10_M.A200001.001.grb'

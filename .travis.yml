@@ -21,8 +21,11 @@ matrix:
       sudo: required
     - os: osx
       language: generic
+    - os: windows
+      language: shell
   allow_failures:
     - os: osx
+    - os: windows
 
 
 #*******************************************************************************
@@ -47,37 +50,45 @@ before_install:
 #-------------------------------------------------------------------------------
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt-get --version             ; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $(grep -v -E '(^#|^$)' requirements.apt) ; fi
-
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt list --installed          ; fi
 
 #-------------------------------------------------------------------------------
 #Specific to OSX
 #-------------------------------------------------------------------------------
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew --version                  ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rm /usr/local/include/c++ ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew reinstall $(grep -v -E '(^#|^$)' requirements.brw) ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ln -s /usr/local/bin/python2 /usr/local/bin/python ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ln -s /usr/local/bin/pip2 /usr/local/bin/pip ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew list                       ; fi
 
 #-------------------------------------------------------------------------------
-#General environment details
+#Specific to Windows
 #-------------------------------------------------------------------------------
-- uname -a
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco info choco            ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "choco install --no-progress ((gc requirements.cho) -notmatch '^#' -match '\S')" ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export PATH="C:\\Python27\\:C:\\Python27\\Scripts\\:$PATH" ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco list --local-only     ; fi
+
+#-------------------------------------------------------------------------------
+#General environment details (OS-agnostic)
+#-------------------------------------------------------------------------------
 - echo $TRAVIS_OS_NAME
 - which python
 - python --version
-- ls -l $(which python)
-- ls -l $(which -a python)
 - which pip
 - pip --version
-- ls -l $(which pip)
-- ls -l $(which -a pip)
 
 
 #*******************************************************************************
 #Installing SHBAAM
 #*******************************************************************************
 install:
-- sudo pip install -r requirements.pip
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "python -m pip install ((gc requirements.pip) -match 'pip==')" ; fi
+- which pip
+- pip --version
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo pip install -r requirements.pip  ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo pip install -r requirements.pip  ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then python -m pip install -r requirements.pip ; fi
 
 
 #*******************************************************************************

@@ -26,7 +26,7 @@
 #*******************************************************************************
 #Operating System
 #*******************************************************************************
-FROM ubuntu:trusty
+FROM debian:stable-slim
 
 
 #*******************************************************************************
@@ -40,15 +40,18 @@ COPY . .
 #Operating System Requirements
 #*******************************************************************************
 RUN  apt-get update && \
-     apt-get install -y $(grep -v -E '(^#|^$)' requirements.apt) && \
+     apt-get install -y --no-install-recommends $(grep -v -E '(^#|^$)' requirements.apt) && \
      rm -rf /var/lib/apt/lists/*
 
 
 #*******************************************************************************
 #Python requirements
 #*******************************************************************************
-RUN  pip install $(grep setuptools requirements.pip) && \
-     pip install -r requirements.pip
+ADD https://bootstrap.pypa.io/get-pip.py .
+RUN python get-pip.py `grep 'pip==' requirements.pip` --no-cache-dir && \
+    rm get-pip.py
+
+RUN pip install --no-cache-dir -r requirements.pip
 
 
 #*******************************************************************************

@@ -52,6 +52,7 @@ RUN python get-pip.py `grep 'pip==' requirements.pip` --no-cache-dir && \
     rm get-pip.py
 
 RUN pip install --no-cache-dir -r requirements.pip
+ENV GDAL_DATA=/usr/local/lib/python2.7/dist-packages/fiona/gdal_data/
 
 
 #*******************************************************************************

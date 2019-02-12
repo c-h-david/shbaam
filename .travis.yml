@@ -45,7 +45,7 @@ before_install:
 #-------------------------------------------------------------------------------
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "set-content ~/.netrc 'machine urs.earthdata.nasa.gov login $ENV:NETRC_LOGIN_EDATA password $ENV:NETRC_PSWRD_EDATA'"
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "set-content ~/.netrc 'machine urs.earthdata.nasa.gov login $ENV:NETRC_LOGIN_EDATA password $ENV:NETRC_PSWRD_EDATA'" ; fi
 
 #-------------------------------------------------------------------------------
 #Specific to Linux

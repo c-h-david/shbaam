@@ -64,7 +64,7 @@ before_install:
 #-------------------------------------------------------------------------------
 - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco info choco            ; fi
 - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "choco install --no-progress ((gc requirements.cho) -notmatch '^#' -match '\S')" ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export PATH="C:\\Python27\\:C:\\Python27\\Scripts\\:$PATH" ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export PATH="C:\\ProgramData\\MiniConda2\\;C:\\ProgramData\\MiniConda2\\Scripts;$ENV:PATH" ; fi
 - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco list --local-only     ; fi
 
 #-------------------------------------------------------------------------------
@@ -83,12 +83,12 @@ before_install:
 install:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "python -m pip install ((gc requirements.pip) -match 'pip==')" ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "conda install -y -q -c anaconda ((gc requirements.pip) -match 'pip==')" ; fi
 - which pip
 - pip --version
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo pip install -r requirements.pip  ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo pip install -r requirements.pip  ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then python -m pip install -r requirements.pip ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then conda install -y -q -c anaconda --file requirements.pip ; fi
 
 
 #*******************************************************************************

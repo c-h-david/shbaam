@@ -88,7 +88,7 @@ install:
 - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "conda install -y -q -c anaconda ((gc requirements.pip) -match 'pip==')" ; fi
 - which pip
 - pip --version
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo pip install -r requirements.pip  ; fi
+- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install --user -r requirements.pip  ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo pip install -r requirements.pip  ; fi
 - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then conda install -y -q -c anaconda --file requirements.pip ; fi
 

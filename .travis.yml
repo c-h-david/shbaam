@@ -75,8 +75,10 @@ before_install:
 - echo $TRAVIS_OS_NAME
 - which python
 - python --version
+- python -c "import site; print(site.getsitepackages())"
 - which pip
 - pip --version
+- pip show pip
 
 
 #*******************************************************************************

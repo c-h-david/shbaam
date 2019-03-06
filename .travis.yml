@@ -85,7 +85,7 @@ before_install:
 install:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo rm -r /usr/lib/python2.7/dist-packages/* ; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo rm -r /usr/local/lib/python2.7/site-packages/* ; fi
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo rm -r /Library/Python/2.7/site-packages/* ; fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
 - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "conda install -y -q -c anaconda ((gc requirements.pip) -match 'pip==')" ; fi
 - which pip

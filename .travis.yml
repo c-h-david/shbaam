@@ -24,7 +24,6 @@ matrix:
     - os: windows
       language: shell
   allow_failures:
-    - os: osx
     - os: windows
 
 

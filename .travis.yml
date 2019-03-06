@@ -64,7 +64,7 @@ before_install:
 #-------------------------------------------------------------------------------
 #Specific to Windows
 #-------------------------------------------------------------------------------
-#- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco info choco            ; fi
+- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco info choco            ; fi
 #- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "choco install --no-progress ((gc requirements.cho) -notmatch '^#' -match '\S')" ; fi
 #- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export PATH="C:\\ProgramData\\MiniConda2\\;C:\\ProgramData\\MiniConda2\\Scripts;$ENV:PATH" ; fi
 #- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco list --local-only     ; fi

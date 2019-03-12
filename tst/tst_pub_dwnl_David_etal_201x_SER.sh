@@ -73,7 +73,7 @@ list="                                                                         \
 mkdir -p $folder
 for lsm in $list
 do
-     ../src/shbaam_ldas.py $lsm 2002-04-01T00:00:00 2002-12-31T23:59:59 $folder
+     ../src/shbaam_ldas.py $lsm 2002-04-01T00:00:00 2017-01-31T23:59:59 $folder
      if [ $? -gt 0 ] ; then echo "Problem downloading $lsm" >&2 ; exit 44 ; fi
      echo "GLDAS files for $lsm downloaded"
 done
@@ -130,8 +130,8 @@ URL="https://podaac-opendap.jpl.nasa.gov:443/opendap/allData/tellus/retired/L3/m
 folder="../input/GRACE"
 
 list="                                                                         \
-      GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc                 \
-      GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc.md5             \
+      GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc                 \
+      GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc.md5             \
     "
 
 #-------------------------------------------------------------------------------
@@ -148,9 +148,9 @@ done
 #Check downloads
 #-------------------------------------------------------------------------------
 cd $folder
-sed -i -e 's/\r$//' GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc.md5
+sed -i -e 's/\r$//' GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc.md5
 if [ $? -gt 0 ] ; then echo "Problem formatting file" >&2 ; exit 44 ; fi
-md5sum -c GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc.md5
+md5sum -c GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc.md5
 if [ $? -gt 0 ] ; then echo "Problem Checking file" >&2 ; exit 44 ; fi
 cd -
 

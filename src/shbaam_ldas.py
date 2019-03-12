@@ -213,7 +213,7 @@ payload['SHORTNAME']='GLDAS_VIC10_M'
 payload['SERVICE']='L34RS_LDAS'
 payload['VERSION']='1.02'
 payload['DATASET_VERSION']='001'
-payload['VARIABLES']='SWE,SoilM1,SoilMoist1,Canint,Canopint'
+payload['VARIABLES']='SWE,SoilM,SoilMoist,Canint,Canopint'
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Looping over all files

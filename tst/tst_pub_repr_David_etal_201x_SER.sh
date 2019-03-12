@@ -83,7 +83,7 @@ cmp_file=tmp_cmp_$unt.txt
 
 echo "- Terrestrial water storage anomalies, Nepal"
 ../src/shbaam_twsa.py                                                          \
-     ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
+     ../input/GRACE/GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc   \
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/Nepal.shp                                             \
      ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
@@ -135,7 +135,7 @@ cmp_file=tmp_cmp_$unt.txt
 
 echo "- Terrestrial water storage anomalies, FourDoabs"
 ../src/shbaam_twsa.py                                                          \
-     ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
+     ../input/GRACE/GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc   \
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/FourDoabs.shp                                         \
      ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
@@ -187,7 +187,7 @@ cmp_file=tmp_cmp_$unt.txt
 
 echo "- Terrestrial water storage anomalies, NorthWestBD"
 ../src/shbaam_twsa.py                                                          \
-     ../input/GRACE/GRCTellus.JPL.200204_201608.GLO.RL05M_1.MSCNv02CRIv02.nc   \
+     ../input/GRACE/GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc   \
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/NorthWestBD.shp                                       \
      ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \

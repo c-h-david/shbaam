@@ -73,7 +73,7 @@ list="                                                                         \
 mkdir -p $folder
 for lsm in $list
 do
-     ../src/shbaam_ldas.py $lsm 2002-04-01T00:00:00 2003-03-31T23:59:59 $folder
+     ../src/shbaam_ldas.py $lsm 2002-04-01T00:00:00 2004-03-31T23:59:59 $folder
      if [ $? -gt 0 ] ; then echo "Problem downloading $lsm" >&2 ; exit 44 ; fi
      echo "GLDAS files for $lsm downloaded"
 done

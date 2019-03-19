@@ -145,7 +145,7 @@ payload['SHORTNAME']='GLDAS_VIC10_M'
 payload['SERVICE']='L34RS_LDAS'
 payload['VERSION']='1.02'
 payload['DATASET_VERSION']='001'
-payload['VARIABLES']='SWE,SoilM1,SoilMoist1,Canint,Canopint'
+payload['VARIABLES']='SWE,SoilM,SoilMoist,Canint,Canopint'
 #Note, variable names change among models:
 #- Noah:   SWE, SoilMoist1, Canopint
 #- VIC:    SWE, SoilM1,     Canint

@@ -191,6 +191,10 @@ done
 URL="http://rapid-hub.org/data/CI/SERVIR_STK"
 folder="../output/SERVIR_STK"
 list="                                                                         \
+      GLDAS_CLM10_M.A200204_200403.nc                                          \
+      GLDAS_MOS10_M.A200204_200403.nc                                          \
+      GLDAS_NOAH10_M.A200204_200403.nc                                         \
+      GLDAS_VIC10_M.A200204_200403.nc                                          \
       GRCTellus.JPL.pnt.zip                                                    \
       map_Nepal.nc                                                             \
       map_FourDoabs.nc                                                         \

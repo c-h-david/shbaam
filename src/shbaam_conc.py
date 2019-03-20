@@ -1,14 +1,13 @@
 #!/usr/bin/env python
-
 #*******************************************************************************
 #shbaam_conc.py
 #*******************************************************************************
 
 #Purpose:
-#Given a folder path with list of files, this script
-#concatenates all files from a GLDAS model and then removes the downloaded indidual subset files stored in the same folder
+#Given a path to a folder containing GLDAS netCDF files in subdirectories, this
+#script concatenates all files into a new netCDF file in the parent folder.
 #Author:
-#A.J. Purdy, 2019
+#A.J. Purdy, and Cedric H. David, 2019-2019
 
 
 #*******************************************************************************
@@ -19,6 +18,7 @@ import glob
 import sys
 import xarray as xr
 
+
 #*******************************************************************************
 #Declaration of variables (given as command line arguments)
 #*******************************************************************************
@@ -28,14 +28,47 @@ import xarray as xr
 #*******************************************************************************
 #Get command line arguments
 #*******************************************************************************
-fin = sys.argv[1:]
+IS_arg=len(sys.argv)
+if IS_arg != 2:
+     print('ERROR - 1 and only 1 argument can be used')
+     raise SystemExit(22)
+
+fin = sys.argv[1]
+
 
 #*******************************************************************************
 #Print input information
 #*******************************************************************************
 print('Command line inputs')
-print('- ' + str(fin[0]))
-flist = sorted(glob.glob(str(fin[0]) + '*/*.nc4'))
+print('- ' + str(fin))
+
+
+#*******************************************************************************
+#Check if directory exists
+#*******************************************************************************
+if not os.path.isdir(fin):
+     print('ERROR - Directory does not exist: '+fin)
+     raise SystemExit(22)
+
+fin=os.path.join(fin,'')
+#add trailing slash if it is not there already
+
+
+#*******************************************************************************
+#Check number of files and corresponding model
+#*******************************************************************************
+print('Check number of files and corresponding model')
+
+MODEL = fin.split('/')[fin.split('/').index('GLDAS')+1].split('_')[1][:-2]
+flist = sorted(glob.glob(str(fin) + '*/*.nc4'))
+
+print('- There are '+str(len(flist))+' files from '+MODEL)
+
+
+#*******************************************************************************
+#Concatenating files
+#*******************************************************************************
+print('Concatenating files')
 
 def get_datespan(ds_all):
     """
@@ -49,15 +82,15 @@ def get_datespan(ds_all):
     date_range = str(year_start)+str(month_start).zfill(2)+'_'+str(year_end)+str(month_end).zfill(2)
     return date_range
 
-
-MODEL = fin[0].split('/')[fin[0].split('/').index('GLDAS')+1].split('_')[1][:-2]
-
-print('There are '+str(len(flist))+' files from '+MODEL)
 ds_all = xr.merge([xr.open_dataset(f) for f in flist])
-OUT_DIR = '/'.join(fin[0].split('/')[0:fin[0].split('/').index('GLDAS')+1])+'/'
+OUT_DIR = '/'.join(fin.split('/')[0:fin.split('/').index('GLDAS')+1])+'/'
 
 out_fname = flist[0].split('/')[-1].split('.')[0] + '.A' + get_datespan(ds_all) + '.nc'
 ds_all.to_netcdf(OUT_DIR + out_fname)
 
-print('all monthly files from ' + MODEL + ' combined and saved to:\n\t' + OUT_DIR + out_fname)
+print('- All monthly files from ' + MODEL + ' combined and saved to:\n\t' + OUT_DIR + out_fname)
 
+
+#*******************************************************************************
+#End
+#*******************************************************************************

@@ -111,6 +111,8 @@ else:
 
 if 'lwe_thickness' in f1.variables:
      rrr_ncf_var1='lwe_thickness'
+elif 'Canint' in f1.variables:
+     rrr_ncf_var1='Canint'
 else:
      print('ERROR - lwe_thickness is not a variable in: '+rrr_ncf_file1) 
      raise SystemExit(99) 
@@ -143,6 +145,8 @@ else:
 
 if 'lwe_thickness' in f2.variables:
      rrr_ncf_var2='lwe_thickness'
+elif 'Canint' in f2.variables:
+     rrr_ncf_var2='Canint'
 else:
      print('ERROR - lwe_thickness is not a variable in: '+rrr_ncf_file2) 
      raise SystemExit(99) 

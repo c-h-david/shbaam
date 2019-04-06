@@ -113,8 +113,10 @@ if 'lwe_thickness' in f1.variables:
      rrr_ncf_var1='lwe_thickness'
 elif 'Canint' in f1.variables:
      rrr_ncf_var1='Canint'
+elif 'Canopint' in f1.variables:
+     rrr_ncf_var1='Canopint'
 else:
-     print('ERROR - lwe_thickness is not a variable in: '+rrr_ncf_file1) 
+     print('ERROR - lwe_thickness, Canint, Canopint are not variables in: '+rrr_ncf_file1) 
      raise SystemExit(99) 
 
 f2 = netCDF4.Dataset(rrr_ncf_file2, "r")
@@ -147,8 +149,10 @@ if 'lwe_thickness' in f2.variables:
      rrr_ncf_var2='lwe_thickness'
 elif 'Canint' in f2.variables:
      rrr_ncf_var2='Canint'
+elif 'Canopint' in f2.variables:
+     rrr_ncf_var2='Canopint'
 else:
-     print('ERROR - lwe_thickness is not a variable in: '+rrr_ncf_file2) 
+     print('ERROR - lwe_thickness, Canint, Canopint are not variables in: '+rrr_ncf_file2) 
      raise SystemExit(99) 
 
 

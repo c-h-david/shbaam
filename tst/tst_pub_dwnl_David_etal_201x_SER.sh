@@ -195,12 +195,41 @@ list="                                                                         \
       GLDAS_MOS10_M.A200204_200403.nc                                          \
       GLDAS_NOAH10_M.A200204_200403.nc                                         \
       GLDAS_VIC10_M.A200204_200403.nc                                          \
+      GLDAS_CLM10_M.A200204_201701.nc                                          \
+      GLDAS_MOS10_M.A200204_201701.nc                                          \
+      GLDAS_NOAH10_M.A200204_201701.nc                                         \
+      GLDAS_VIC10_M.A200204_201701.nc                                          \
       GRCTellus.JPL.pnt.zip                                                    \
+      GLDAS.pnt.zip                                                            \
+      map_Nepal_CLMa.nc                                                        \
+      map_Nepal_MOSa.nc                                                        \
+      map_Nepal_NOAHa.nc                                                       \
+      map_Nepal_VICa.nc                                                        \
       map_Nepal.nc                                                             \
+      map_FourDoabs_CLMa.nc                                                    \
+      map_FourDoabs_MOSa.nc                                                    \
+      map_FourDoabs_NOAHa.nc                                                   \
+      map_FourDoabs_VICa.nc                                                    \
       map_FourDoabs.nc                                                         \
+      map_NorthWestBD_CLMa.nc                                                  \
+      map_NorthWestBD_MOSa.nc                                                  \
+      map_NorthWestBD_NOAHa.nc                                                 \
+      map_NorthWestBD_VICa.nc                                                  \
       map_NorthWestBD.nc                                                       \
+      timeseries_Nepal_CLMa.csv                                                \
+      timeseries_Nepal_MOSa.csv                                                \
+      timeseries_Nepal_NOAHa.csv                                               \
+      timeseries_Nepal_VICa.csv                                                \
       timeseries_Nepal.csv                                                     \
+      timeseries_FourDoabs_CLMa.csv                                            \
+      timeseries_FourDoabs_MOSa.csv                                            \
+      timeseries_FourDoabs_NOAHa.csv                                           \
+      timeseries_FourDoabs_VICa.csv                                            \
       timeseries_FourDoabs.csv                                                 \
+      timeseries_NorthWestBD_CLMa.csv                                          \
+      timeseries_NorthWestBD_MOSa.csv                                          \
+      timeseries_NorthWestBD_NOAHa.csv                                         \
+      timeseries_NorthWestBD_VICa.csv                                          \
       timeseries_NorthWestBD.csv                                               \
      "
 
@@ -225,6 +254,8 @@ if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 unzip -nq ../input/SERVIR_STK/NorthWestBD.zip -d ../input/SERVIR_STK/
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 unzip -nq ../output/SERVIR_STK/GRCTellus.JPL.pnt.zip -d ../output/SERVIR_STK/
+if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
+unzip -nq ../output/SERVIR_STK/GLDAS.pnt.zip -d ../output/SERVIR_STK/
 if [ $? -gt 0 ] ; then echo "Problem converting" >&2 ; exit 22 ; fi
 
 

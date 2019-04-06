@@ -401,6 +401,210 @@ fi
 
 
 #*******************************************************************************
+#Land surface model anomalies, CLM, FourDoabs
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Land surface model anomalies, CLM, FourDoabs"
+../src/shbaam_lsma.py                                                          \
+     ../output/SERVIR_STK/GLDAS_CLM10_M.A200204_201701.nc                      \
+     ../input/SERVIR_STK/FourDoabs.shp                                         \
+     ../output/SERVIR_STK/GLDAS.pnt_tst.shp                                    \
+     ../output/SERVIR_STK/timeseries_FourDoabs_CLMa_tst.csv                    \
+     ../output/SERVIR_STK/map_FourDoabs_CLMa_tst.nc                            \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing shapefiles"
+./tst_cmp_shp.py                                                               \
+     ../output/SERVIR_STK/GLDAS.pnt.shp                                        \
+     ../output/SERVIR_STK/GLDAS.pnt_tst.shp                                    \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_FourDoabs_CLMa.csv                        \
+     ../output/SERVIR_STK/timeseries_FourDoabs_CLMa_tst.csv                    \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing maps"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/map_FourDoabs_CLMa.nc                                \
+     ../output/SERVIR_STK/map_FourDoabs_CLMa_tst.nc                            \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Land surface model anomalies, MOS, FourDoabs
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Land surface model anomalies, MOS, FourDoabs"
+../src/shbaam_lsma.py                                                          \
+     ../output/SERVIR_STK/GLDAS_MOS10_M.A200204_201701.nc                      \
+     ../input/SERVIR_STK/FourDoabs.shp                                         \
+     ../output/SERVIR_STK/GLDAS.pnt_tst.shp                                    \
+     ../output/SERVIR_STK/timeseries_FourDoabs_MOSa_tst.csv                    \
+     ../output/SERVIR_STK/map_FourDoabs_MOSa_tst.nc                            \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing shapefiles"
+./tst_cmp_shp.py                                                               \
+     ../output/SERVIR_STK/GLDAS.pnt.shp                                        \
+     ../output/SERVIR_STK/GLDAS.pnt_tst.shp                                    \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_FourDoabs_MOSa.csv                        \
+     ../output/SERVIR_STK/timeseries_FourDoabs_MOSa_tst.csv                    \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing maps"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/map_FourDoabs_MOSa.nc                                \
+     ../output/SERVIR_STK/map_FourDoabs_MOSa_tst.nc                            \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Land surface model anomalies, NOAH, FourDoabs
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Land surface model anomalies, NOAH, FourDoabs"
+../src/shbaam_lsma.py                                                          \
+     ../output/SERVIR_STK/GLDAS_NOAH10_M.A200204_201701.nc                     \
+     ../input/SERVIR_STK/FourDoabs.shp                                         \
+     ../output/SERVIR_STK/GLDAS.pnt_tst.shp                                    \
+     ../output/SERVIR_STK/timeseries_FourDoabs_NOAHa_tst.csv                   \
+     ../output/SERVIR_STK/map_FourDoabs_NOAHa_tst.nc                           \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing shapefiles"
+./tst_cmp_shp.py                                                               \
+     ../output/SERVIR_STK/GLDAS.pnt.shp                                        \
+     ../output/SERVIR_STK/GLDAS.pnt_tst.shp                                    \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_FourDoabs_NOAHa.csv                       \
+     ../output/SERVIR_STK/timeseries_FourDoabs_NOAHa_tst.csv                   \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing maps"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/map_FourDoabs_NOAHa.nc                               \
+     ../output/SERVIR_STK/map_FourDoabs_NOAHa_tst.nc                           \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Land surface model anomalies, VIC, FourDoabs
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Land surface model anomalies, VIC, FourDoabs"
+../src/shbaam_lsma.py                                                          \
+     ../output/SERVIR_STK/GLDAS_VIC10_M.A200204_201701.nc                      \
+     ../input/SERVIR_STK/FourDoabs.shp                                         \
+     ../output/SERVIR_STK/GLDAS.pnt_tst.shp                                    \
+     ../output/SERVIR_STK/timeseries_FourDoabs_VICa_tst.csv                    \
+     ../output/SERVIR_STK/map_FourDoabs_VICa_tst.nc                            \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing shapefiles"
+./tst_cmp_shp.py                                                               \
+     ../output/SERVIR_STK/GLDAS.pnt.shp                                        \
+     ../output/SERVIR_STK/GLDAS.pnt_tst.shp                                    \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_FourDoabs_VICa.csv                        \
+     ../output/SERVIR_STK/timeseries_FourDoabs_VICa_tst.csv                    \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+echo "- Comparing maps"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/map_FourDoabs_VICa.nc                                \
+     ../output/SERVIR_STK/map_FourDoabs_VICa_tst.nc                            \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
 #Terrestrial water storage anomalies, Nepal
 #*******************************************************************************
 unt=$((unt+1))

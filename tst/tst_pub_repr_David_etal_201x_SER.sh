@@ -73,6 +73,130 @@ unt=0
 
 
 #*******************************************************************************
+#Concatenation of GLDAS files, CLM
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Concatenation of GLDAS files, CLM"
+../src/shbaam_conc.py                                                          \
+     ../input/GLDAS/GLDAS_CLM10_M/                                             \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing netCDF files"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/GLDAS_CLM10_M.A200204_200403.nc                      \
+     ../input/GLDAS/GLDAS_CLM10_M.A200204_200403.nc                            \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Concatenation of GLDAS files, MOS
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Concatenation of GLDAS files, MOS"
+../src/shbaam_conc.py                                                          \
+     ../input/GLDAS/GLDAS_MOS10_M/                                             \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing netCDF files"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/GLDAS_MOS10_M.A200204_200403.nc                      \
+     ../input/GLDAS/GLDAS_MOS10_M.A200204_200403.nc                            \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Concatenation of GLDAS files, NOAH
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Concatenation of GLDAS files, NOAH"
+../src/shbaam_conc.py                                                          \
+     ../input/GLDAS/GLDAS_NOAH10_M/                                            \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing netCDF files"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/GLDAS_NOAH10_M.A200204_200403.nc                     \
+     ../input/GLDAS/GLDAS_NOAH10_M.A200204_200403.nc                           \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Concatenation of GLDAS files, VIC
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Concatenation of GLDAS files,VIC"
+../src/shbaam_conc.py                                                          \
+     ../input/GLDAS/GLDAS_VIC10_M/                                             \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing netCDF files"
+./tst_cmp_n3d.py                                                               \
+     ../output/SERVIR_STK/GLDAS_VIC10_M.A200204_200403.nc                      \
+     ../input/GLDAS/GLDAS_VIC10_M.A200204_200403.nc                            \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
 #Terrestrial water storage anomalies, Nepal
 #*******************************************************************************
 unt=$((unt+1))

@@ -45,7 +45,7 @@ if IS_arg != 3:
 
 IN_DIR_PATH = sys.argv[1]
 REGION = sys.argv[2]
-OUT_CSV_FILENAME = 'output/SERVIR_STK/timeseries_gwa_' + REGION + '.csv'
+OUT_CSV_FILENAME = IN_DIR_PATH+'/timeseries_'+REGION+'_ALLa.csv'
 
 #*******************************************************************************
 #Print input information
@@ -130,7 +130,7 @@ df_sync_out.to_csv(OUT_CSV_FILENAME)
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Check if output directory exist if not create directory
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-OUT_FIG_DIR = 'output'+os.sep+'figures'
+OUT_FIG_DIR = IN_DIR_PATH+os.sep+'figures'
 if not os.path.isdir(OUT_FIG_DIR):
     os.mkdir(OUT_FIG_DIR)
     print('making directory:\t'+OUT_FIG_DIR)

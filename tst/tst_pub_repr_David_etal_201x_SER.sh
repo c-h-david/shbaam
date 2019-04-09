@@ -827,8 +827,8 @@ echo "- Terrestrial water storage anomalies, Nepal"
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/Nepal.shp                                             \
      ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
-     ../output/SERVIR_STK/timeseries_Nepal_tst.csv                             \
-     ../output/SERVIR_STK/map_Nepal_tst.nc                                     \
+     ../output/SERVIR_STK/timeseries_Nepal_GRCa_tst.csv                        \
+     ../output/SERVIR_STK/map_Nepal_GRCa_tst.nc                                \
      > $run_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 
@@ -841,8 +841,8 @@ x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \
-     ../output/SERVIR_STK/timeseries_Nepal.csv                                 \
-     ../output/SERVIR_STK/timeseries_Nepal_tst.csv                             \
+     ../output/SERVIR_STK/timeseries_Nepal_GRCa.csv                            \
+     ../output/SERVIR_STK/timeseries_Nepal_GRCa_tst.csv                        \
      1e-6                                                                      \
      1e-6                                                                      \
      > $cmp_file
@@ -850,8 +850,8 @@ x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x
 
 echo "- Comparing maps"
 ./tst_cmp_n3d.py                                                               \
-     ../output/SERVIR_STK/map_Nepal.nc                                         \
-     ../output/SERVIR_STK/map_Nepal_tst.nc                                     \
+     ../output/SERVIR_STK/map_Nepal_GRCa.nc                                    \
+     ../output/SERVIR_STK/map_Nepal_GRCa_tst.nc                                \
      1e-6                                                                      \
      1e-6                                                                      \
      > $cmp_file
@@ -879,8 +879,8 @@ echo "- Terrestrial water storage anomalies, FourDoabs"
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/FourDoabs.shp                                         \
      ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
-     ../output/SERVIR_STK/timeseries_FourDoabs_tst.csv                         \
-     ../output/SERVIR_STK/map_FourDoabs_tst.nc                                 \
+     ../output/SERVIR_STK/timeseries_FourDoabs_GRCa_tst.csv                    \
+     ../output/SERVIR_STK/map_FourDoabs_GRCa_tst.nc                            \
      > $run_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 
@@ -893,8 +893,8 @@ x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \
-     ../output/SERVIR_STK/timeseries_FourDoabs.csv                             \
-     ../output/SERVIR_STK/timeseries_FourDoabs_tst.csv                         \
+     ../output/SERVIR_STK/timeseries_FourDoabs_GRCa.csv                        \
+     ../output/SERVIR_STK/timeseries_FourDoabs_GRCa_tst.csv                    \
      1e-6                                                                      \
      1e-6                                                                      \
      > $cmp_file
@@ -902,8 +902,8 @@ x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x
 
 echo "- Comparing maps"
 ./tst_cmp_n3d.py                                                               \
-     ../output/SERVIR_STK/map_FourDoabs.nc                                     \
-     ../output/SERVIR_STK/map_FourDoabs_tst.nc                                 \
+     ../output/SERVIR_STK/map_FourDoabs_GRCa.nc                                \
+     ../output/SERVIR_STK/map_FourDoabs_GRCa_tst.nc                            \
      1e-6                                                                      \
      1e-6                                                                      \
      > $cmp_file
@@ -931,8 +931,8 @@ echo "- Terrestrial water storage anomalies, NorthWestBD"
      ../input/GRACE/CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                     \
      ../input/SERVIR_STK/NorthWestBD.shp                                       \
      ../output/SERVIR_STK/GRCTellus.JPL.pnt_tst.shp                            \
-     ../output/SERVIR_STK/timeseries_NorthWestBD_tst.csv                       \
-     ../output/SERVIR_STK/map_NorthWestBD_tst.nc                               \
+     ../output/SERVIR_STK/timeseries_NorthWestBD_GRCa_tst.csv                  \
+     ../output/SERVIR_STK/map_NorthWestBD_GRCa_tst.nc                          \
      > $run_file
 x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
 
@@ -945,8 +945,8 @@ x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x
 
 echo "- Comparing timeseries"
 ./tst_cmp_csv.py                                                               \
-     ../output/SERVIR_STK/timeseries_NorthWestBD.csv                           \
-     ../output/SERVIR_STK/timeseries_NorthWestBD_tst.csv                       \
+     ../output/SERVIR_STK/timeseries_NorthWestBD_GRCa.csv                      \
+     ../output/SERVIR_STK/timeseries_NorthWestBD_GRCa_tst.csv                  \
      1e-6                                                                      \
      1e-6                                                                      \
      > $cmp_file
@@ -954,8 +954,8 @@ x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x
 
 echo "- Comparing maps"
 ./tst_cmp_n3d.py                                                               \
-     ../output/SERVIR_STK/map_NorthWestBD.nc                                   \
-     ../output/SERVIR_STK/map_NorthWestBD_tst.nc                               \
+     ../output/SERVIR_STK/map_NorthWestBD_GRCa.nc                              \
+     ../output/SERVIR_STK/map_NorthWestBD_GRCa_tst.nc                          \
      1e-6                                                                      \
      1e-6                                                                      \
      > $cmp_file

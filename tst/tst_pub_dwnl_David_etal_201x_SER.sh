@@ -205,32 +205,32 @@ list="                                                                         \
       map_Nepal_MOSa.nc                                                        \
       map_Nepal_NOAHa.nc                                                       \
       map_Nepal_VICa.nc                                                        \
-      map_Nepal.nc                                                             \
+      map_Nepal_GRCa.nc                                                        \
       map_FourDoabs_CLMa.nc                                                    \
       map_FourDoabs_MOSa.nc                                                    \
       map_FourDoabs_NOAHa.nc                                                   \
       map_FourDoabs_VICa.nc                                                    \
-      map_FourDoabs.nc                                                         \
+      map_FourDoabs_GRCa.nc                                                    \
       map_NorthWestBD_CLMa.nc                                                  \
       map_NorthWestBD_MOSa.nc                                                  \
       map_NorthWestBD_NOAHa.nc                                                 \
       map_NorthWestBD_VICa.nc                                                  \
-      map_NorthWestBD.nc                                                       \
+      map_NorthWestBD_GRCa.nc                                                  \
       timeseries_Nepal_CLMa.csv                                                \
       timeseries_Nepal_MOSa.csv                                                \
       timeseries_Nepal_NOAHa.csv                                               \
       timeseries_Nepal_VICa.csv                                                \
-      timeseries_Nepal.csv                                                     \
+      timeseries_Nepal_GRCa.csv                                                \
       timeseries_FourDoabs_CLMa.csv                                            \
       timeseries_FourDoabs_MOSa.csv                                            \
       timeseries_FourDoabs_NOAHa.csv                                           \
       timeseries_FourDoabs_VICa.csv                                            \
-      timeseries_FourDoabs.csv                                                 \
+      timeseries_FourDoabs_GRCa.csv                                            \
       timeseries_NorthWestBD_CLMa.csv                                          \
       timeseries_NorthWestBD_MOSa.csv                                          \
       timeseries_NorthWestBD_NOAHa.csv                                         \
       timeseries_NorthWestBD_VICa.csv                                          \
-      timeseries_NorthWestBD.csv                                               \
+      timeseries_NorthWestBD_GRCa.csv                                          \
      "
 
 #-------------------------------------------------------------------------------

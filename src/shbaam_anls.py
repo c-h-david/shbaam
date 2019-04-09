@@ -55,14 +55,14 @@ print(' - '+REGION)
 #*******************************************************************************
 #Check if files exist in output folder
 #*******************************************************************************
-if len(glob.glob(IN_DIR_PATH+'*' + REGION + '.csv')) != 5:
+if len(glob.glob(IN_DIR_PATH+'*' + REGION +'*'+ '.csv')) != 5:
      print('PLEASE execute shbaam_conc.py & shbaam_ldas_anoms.py before executing this script')
      raise SystemExit(22)
 
 #*******************************************************************************
 #Read GRACE and GLDAS csv files & compute groundwater anomalies
 #*******************************************************************************
-time_series_files = glob.glob(IN_DIR_PATH+'*' + REGION + '.csv')
+time_series_files = glob.glob(IN_DIR_PATH+'*' + REGION + '*'+'.csv')
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Create output dataframe for ALL variables

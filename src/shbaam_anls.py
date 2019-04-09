@@ -71,11 +71,18 @@ time_series_files = glob.glob(IN_DIR_PATH+'*' + REGION + '*'+'.csv')
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 df_all = pd.DataFrame()
 for f in time_series_files:
-    if len(f.split('/')[-1].split('_'))==3:
-        df_i = pd.read_csv(f)
-        df_all['date']=df_i.date
-        for h in list(df_i)[1:]:
-            df_all[h+'_'+f.split('/')[-1].split('_')[1]] = df_i[h]
+     if 'CLM' in f or 'MOS' in f or 'NOAH' in f or 'VIC' in f:
+          df_i = pd.read_csv(f)
+          df_all['date']=df_i.date
+          for h in list(df_i)[1:]:
+               if 'CLM' in f:
+                    df_all[h+'_CLM']=df_i[h]
+               if 'MOS' in f:
+                    df_all[h+'_MOS']=df_i[h]
+               if 'NOAH' in f:
+                    df_all[h+'_NOAH']=df_i[h]
+               if 'VIC' in f:
+                    df_all[h+'_VIC']=df_i[h]
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Combine all GLDAS models
@@ -95,9 +102,11 @@ df_all.set_index(pd.to_datetime(df_all.date), inplace=True)
 # Read in GRACE data and set time index
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-grc_df = pd.read_csv(time_series_files[-1], header=None)
-grc_df.columns = ['date_grc', 'twsa']
-grc_df.set_index(pd.to_datetime(grc_df.date_grc), inplace=True)
+for f in time_series_files:
+     if 'GRC' in f:
+          grc_df = pd.read_csv(f, header=None)
+          grc_df.columns = ['date_grc', 'twsa']
+          grc_df.set_index(pd.to_datetime(grc_df.date_grc), inplace=True)
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Resample GRACE to GLDAS time stamp.

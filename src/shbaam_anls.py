@@ -17,6 +17,8 @@
 #*******************************************************************************
 import sys
 import glob
+import matplotlib
+matplotlib.use("agg")
 import matplotlib.pyplot as plt
 import os
 import pandas as pd

@@ -23,17 +23,19 @@ import xarray as xr
 #Declaration of variables (given as command line arguments)
 #*******************************************************************************
 # 1 - fin
+# 2 - fout
 
 
 #*******************************************************************************
 #Get command line arguments
 #*******************************************************************************
 IS_arg=len(sys.argv)
-if IS_arg != 2:
-     print('ERROR - 1 and only 1 argument can be used')
+if IS_arg != 3:
+     print('ERROR - 2 and only 2 argument can be used')
      raise SystemExit(22)
 
 fin = sys.argv[1]
+fout = sys.argv[2]
 
 
 #*******************************************************************************
@@ -83,12 +85,17 @@ def get_datespan(ds_all):
     return date_range
 
 ds_all = xr.merge([xr.open_dataset(f) for f in flist])
-OUT_DIR = '/'.join(fin.split('/')[0:fin.split('/').index('GLDAS')+1])+'/'
+print('- Done')
 
-out_fname = flist[0].split('/')[-1].split('.')[0] + '.A' + get_datespan(ds_all) + '.nc'
-ds_all.to_netcdf(OUT_DIR + out_fname)
 
-print('- All monthly files from ' + MODEL + ' combined and saved to:\n\t' + OUT_DIR + out_fname)
+#*******************************************************************************
+#Creating output file
+#*******************************************************************************
+print('Creating output file')
+
+ds_all.to_netcdf(fout)
+
+print('- All monthly files from ' + MODEL + ' combined and saved to: ' + fout)
 
 
 #*******************************************************************************

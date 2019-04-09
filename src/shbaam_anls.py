@@ -57,7 +57,7 @@ print(' - '+REGION)
 #*******************************************************************************
 #Check if files exist in output folder
 #*******************************************************************************
-if len(glob.glob(IN_DIR_PATH+'*' + REGION +'*'+ '.csv')) != 5:
+if len(glob.glob(IN_DIR_PATH+'*' + REGION +'*'+ '.csv')) <= 5:
      print('PLEASE execute shbaam_conc.py & shbaam_ldas_anoms.py before executing this script')
      raise SystemExit(22)
 

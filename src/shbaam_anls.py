@@ -89,8 +89,8 @@ for f in time_series_files:
 # Combine all GLDAS models
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-df_all["Total_SoilMoist_mean"]=(df_all.Total_SoilMoist_MOS + df_all.Total_SoilMoist_NOAH + df_all.Total_SoilMoist_VIC
-                                + df_all.Total_SoilMoist_CLM)/4
+df_all["SMTa_mean"]=(df_all.SMTa_MOS + df_all.SMTa_NOAH + df_all.SMTa_VIC
+                                + df_all.SMTa_CLM)/4
 
 df_all["Canopint_mean"]=(df_all.Canopint_MOS + df_all.Canopint_NOAH + df_all.Canint_VIC
                                 + df_all.Canopint_CLM)/4
@@ -118,10 +118,10 @@ df_sync_grc = grc_df.resample('M').fillna(method='pad', limit=1).interpolate(met
 df_all = df_all[(df_all['date'] < '2016-09-01')]
 df_sync_gldas = df_all.resample('M').pad()
 df_sync_gldas['grace_twsa'] = df_sync_grc['twsa']
-df_sync_gldas['gw_a'] = df_sync_gldas.grace_twsa - df_sync_gldas.Total_SoilMoist_mean - df_sync_gldas.Canopint_mean - df_sync_gldas.SWE_mean
+df_sync_gldas['gw_a'] = df_sync_gldas.grace_twsa - df_sync_gldas.SMTa_mean - df_sync_gldas.Canopint_mean - df_sync_gldas.SWE_mean
 
 # Saving CSV
-df_sync_out = df_sync_gldas[['gw_a', 'grace_twsa', 'Total_SoilMoist_mean', 'Canopint_mean', 'SWE_mean']]
+df_sync_out = df_sync_gldas[['gw_a', 'grace_twsa', 'SMTa_mean', 'Canopint_mean', 'SWE_mean']]
 df_sync_out.to_csv(OUT_CSV_FILENAME)
 
 #*******************************************************************************
@@ -149,7 +149,7 @@ axs[0].set_ylim([-.24, .24])
 axs[1].plot(df_sync_gldas.Canopint_mean)
 axs[1].set_ylim([-.24, .24])
 axs[1].set_ylabel('Canopy\nStorage (cm)')
-axs[2].plot(df_sync_gldas.Total_SoilMoist_mean)
+axs[2].plot(df_sync_gldas.SMTa_mean)
 axs[2].set_ylabel('Soil \nMoisture \n(cm)\n')
 axs[2].set_ylim([-30., 32.2])
 axs[3].plot(df_sync_grc.twsa)

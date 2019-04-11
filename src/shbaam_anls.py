@@ -105,7 +105,7 @@ df_all.set_index(pd.to_datetime(df_all.date), inplace=True)
 
 for f in time_series_files:
      if 'GRC' in f:
-          grc_df = pd.read_csv(f, header=None)
+          grc_df = pd.read_csv(f)
           grc_df.columns = ['date_grc', 'twsa']
           grc_df.set_index(pd.to_datetime(grc_df.date_grc), inplace=True)
 

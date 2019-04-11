@@ -29,6 +29,7 @@ import pandas as pd
 #*******************************************************************************
 # 1 - IN_DIR_PATH
 # 2 - REGION
+# 3 - OUT_CSV_FILENAME
 
 #*******************************************************************************
 #Get command line arguments
@@ -38,14 +39,14 @@ import pandas as pd
 #*******************************************************************************
 IS_arg = len(sys.argv)
 
-if IS_arg != 3:
-     print('PLEASE ENTER DIRECTORY WITH GLDAS and GRACE MAPS & REGION OF INTEREST')
-     print('\nshbaam_analysis.py output/SERVIR_STK/ NorthWestBangladesh\n')
+if IS_arg != 4:
+     print('PLEASE ENTER DIRECTORY WITH GLDAS and GRACE MAPS, REGION OF INTEREST, and output file')
+     print('\n./shbaam_analysis.py ../output/SERVIR_STK/ NorthWestBD ../output/SERVIR_STK/timeseries_NorthWestBD_ALLa.csv\n')
      raise SystemExit(22)
 
 IN_DIR_PATH = sys.argv[1]
 REGION = sys.argv[2]
-OUT_CSV_FILENAME = IN_DIR_PATH+'/timeseries_'+REGION+'_ALLa.csv'
+OUT_CSV_FILENAME = sys.argv[3]
 
 #*******************************************************************************
 #Print input information

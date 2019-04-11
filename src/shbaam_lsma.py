@@ -166,7 +166,7 @@ def sum_SM_by_depth(dataset):
     if 'SoilMoist' in dataset.data_vars:
         tot_sm = dataset.SoilMoist.sum(dim='depth')
         tot_sm.attrs['units'] = 'kg/m2'
-        dataset['Total_SoilMoist'] = tot_sm
+        dataset['SMTa'] = tot_sm
         dataset = dataset.drop(['SoilMoist','depth_bnds'])
         print('Soil moisture summed by depth for anomaly time sereis')
     else:

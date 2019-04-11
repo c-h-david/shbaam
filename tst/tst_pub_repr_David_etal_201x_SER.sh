@@ -969,6 +969,105 @@ fi
 
 
 #*******************************************************************************
+#Summary analyses, Nepal
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Summary analyses, Nepal"
+../src/shbaam_anls.py                                                          \
+     ../output/SERVIR_STK/                                                     \
+     Nepal                                                                     \
+     ../output/SERVIR_STK/timeseries_Nepal_ALLa_tst.csv                        \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_Nepal_ALLa.csv                            \
+     ../output/SERVIR_STK/timeseries_Nepal_ALLa_tst.csv                        \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Summary analyses, FourDoabs
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Summary analyses, FourDoabs"
+../src/shbaam_anls.py                                                          \
+     ../output/SERVIR_STK/                                                     \
+     FourDoabs                                                                 \
+     ../output/SERVIR_STK/timeseries_FourDoabs_ALLa_tst.csv                    \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_FourDoabs_ALLa.csv                        \
+     ../output/SERVIR_STK/timeseries_FourDoabs_ALLa_tst.csv                    \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
+#Summary analyses, NorthWestBD
+#*******************************************************************************
+unt=$((unt+1))
+if [ "$unt" -ge "$fst" ] && [ "$unt" -le "$lst" ] ; then
+echo "Running unit test $unt/x"
+run_file=tmp_run_$unt.txt
+cmp_file=tmp_cmp_$unt.txt
+
+echo "- Summary analyses, NorthWestBD"
+../src/shbaam_anls.py                                                          \
+     ../output/SERVIR_STK/                                                     \
+     NorthWestBD                                                               \
+     ../output/SERVIR_STK/timeseries_NorthWestBD_ALLa_tst.csv                  \
+     > $run_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed run: $run_file" >&2 ; exit $x ; fi
+
+echo "- Comparing timeseries"
+./tst_cmp_csv.py                                                               \
+     ../output/SERVIR_STK/timeseries_NorthWestBD_ALLa.csv                      \
+     ../output/SERVIR_STK/timeseries_NorthWestBD_ALLa_tst.csv                  \
+     1e-6                                                                      \
+     1e-6                                                                      \
+     > $cmp_file
+x=$? && if [ $x -gt 0 ] ; then echo "Failed comparison: $cmp_file" >&2 ; exit $x ; fi
+
+rm -f $run_file
+rm -f $cmp_file
+echo "Success"
+echo "********************"
+fi
+
+
+#*******************************************************************************
 #Clean up
 #*******************************************************************************
 rm -f ../output/SERVIR_STK/*_tst.*

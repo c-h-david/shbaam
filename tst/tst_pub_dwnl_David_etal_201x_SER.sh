@@ -216,16 +216,19 @@ list="                                                                         \
       map_NorthWestBD_NOAHa.nc                                                 \
       map_NorthWestBD_VICa.nc                                                  \
       map_NorthWestBD_GRCa.nc                                                  \
+      timeseries_Nepal_ALLa.csv                                                \
       timeseries_Nepal_CLMa.csv                                                \
       timeseries_Nepal_MOSa.csv                                                \
       timeseries_Nepal_NOAHa.csv                                               \
       timeseries_Nepal_VICa.csv                                                \
       timeseries_Nepal_GRCa.csv                                                \
+      timeseries_FourDoabs_ALLa.csv                                            \
       timeseries_FourDoabs_CLMa.csv                                            \
       timeseries_FourDoabs_MOSa.csv                                            \
       timeseries_FourDoabs_NOAHa.csv                                           \
       timeseries_FourDoabs_VICa.csv                                            \
       timeseries_FourDoabs_GRCa.csv                                            \
+      timeseries_NorthWestBD_ALLa.csv                                          \
       timeseries_NorthWestBD_CLMa.csv                                          \
       timeseries_NorthWestBD_MOSa.csv                                          \
       timeseries_NorthWestBD_NOAHa.csv                                         \

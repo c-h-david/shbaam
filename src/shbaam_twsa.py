@@ -397,6 +397,7 @@ with open(shb_wsa_csv, 'wb') as csvfile:
      #csvwriter = csv.writer(csvfile, dialect='excel', quotechar="'",           \
      #                       quoting=csv.QUOTE_NONNUMERIC)
      csvwriter = csv.writer(csvfile, dialect='excel')
+     csvwriter.writerow(['date','TWSa'])
      for JS_grc_time in range(IS_grc_time):
           IV_line=[YV_grc_time[JS_grc_time],ZV_wsa[JS_grc_time]] 
           csvwriter.writerow(IV_line) 

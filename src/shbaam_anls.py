@@ -22,6 +22,7 @@ matplotlib.use("agg")
 import matplotlib.pyplot as plt
 import os
 import pandas as pd
+import numpy as np
 
 
 #*******************************************************************************
@@ -111,17 +112,54 @@ for f in time_series_files:
 
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Resample GRACE to GLDAS time stamp.
-# Compute groundwater anomaly
+# GRACE INTERPOLATION
+# Groundwater anomaly computation
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# Read GRACE data, resample, then interpolate linearly with maximum of 3 consecutive months.
-df_sync_grc = grc_df.resample('M').fillna(method='pad', limit=1).interpolate(method='linear', limit=3)
+#
+#- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+def GRACE_interp(grc_df):
+    '''
+
+    :param grc_df: input GRACE dataframe (output from shbaam_twsa.py)
+    :return df_sync_gr: gap-filled GRACE data following below methods
+
+    # We follow the methods of Hamlington et al., 2019 'Amplitude Modulation of Seasonal
+    # Variability in Terrestrial Water Storage'.
+    # 1. Compute and remove trend from original data
+    # 2. Compute climatology
+    # 3. Remove climatology from original data
+    # 4. Gap-fill climatology-free data (inter-annual variations) by cubic interpolation
+    # 5. Add climatology back to the gap-filled data to get filled TWSA
+    '''
+    df_sync_grc = grc_df.resample('M').fillna(method='pad', limit=1)
+    x = np.arange(df_sync_grc.index.size)
+    df_sync_grc['x']=x
+    df_nonans = df_sync_grc.dropna()
+    X = np.array(df_nonans.x)
+    fit = np.polyfit(X, df_nonans.twsa, 1)
+    fit_fn = np.poly1d(fit)
+    df_sync_grc['linear_trend']= fit_fn(x)
+    df_sync_grc['iav']=df_sync_grc.twsa-df_sync_grc.linear_trend
+    df_sync_grc['month_num']=df_sync_grc.index.month
+    month_clim = df_sync_grc.iav.groupby(df_sync_grc.index.month).mean()
+    clim_dict = month_clim.to_dict()
+    df_sync_grc['clim']=df_sync_grc['month_num'].map(clim_dict)
+    df_sync_grc['noclim']=df_sync_grc.twsa-df_sync_grc.clim
+    df_sync_grc['noclim_fill'] = df_sync_grc.noclim.fillna(method='pad', limit=1).interpolate(method='cubic', limit=3)
+    df_sync_grc['twsa_fill'] =df_sync_grc.noclim_fill+df_sync_grc.clim
+    return df_sync_grc
+
+df_sync_grc = GRACE_interp(grc_df)
 df_all = df_all[(df_all['date'] < '2016-09-01')]
 df_sync_gldas = df_all.resample('M').pad()
-df_sync_gldas['grace_twsa'] = df_sync_grc['twsa']
+df_sync_gldas['grace_twsa'] = df_sync_grc['twsa_fill']
 df_sync_gldas['gw_a'] = df_sync_gldas.grace_twsa - df_sync_gldas.SMTa_mean - df_sync_gldas.Canopint_mean - df_sync_gldas.SWE_mean
 
 # Saving CSV
 df_sync_out = df_sync_gldas[['gw_a', 'grace_twsa', 'SMTa_mean', 'Canopint_mean', 'SWE_mean']]
+df_sync_out.rename(columns={'Canopint_mean':'CANa','SWE_mean':'SWEa'})
 df_sync_out.to_csv(OUT_CSV_FILENAME)
 
 #*******************************************************************************
@@ -145,16 +183,16 @@ fig1.subplots_adjust(hspace=0)
 axs[0].set_title(REGION + '\nWater Storage Changes')
 axs[0].plot(df_sync_gldas.SWE_mean)
 axs[0].set_ylabel('SWE\n (cm)\n')
-axs[0].set_ylim([-.24, .24])
+# axs[0].set_ylim([-.24, .24])
 axs[1].plot(df_sync_gldas.Canopint_mean)
-axs[1].set_ylim([-.24, .24])
+# axs[1].set_ylim([-.24, .24])
 axs[1].set_ylabel('Canopy\nStorage (cm)')
 axs[2].plot(df_sync_gldas.SMTa_mean)
 axs[2].set_ylabel('Soil \nMoisture \n(cm)\n')
-axs[2].set_ylim([-30., 32.2])
-axs[3].plot(df_sync_grc.twsa)
+# axs[2].set_ylim([-30., 32.2])
+axs[3].plot(df_sync_grc.twsa_fill)
 axs[3].set_ylabel('TWSA\n(cm)')
-axs[3].set_ylim([-55., 65.2])
+# axs[3].set_ylim([-55., 65.2])
 plt.tight_layout()
 fig1.savefig(OUT_FIG_DIR + os.sep + 'water_comps_' + REGION + '.png', dpi=200)
 

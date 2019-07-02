@@ -21,6 +21,8 @@
 #           -it shbaam:myimage                           #Run and map volumes
 #docker save -o shbaam_myimage.tar shbaam:myimage        #Save a copy of image
 #docker load -i shbaam_myimage.tar                       #Load a saved image
+#docker commit containerID shbaam:myimage2               #Save image from contID
+#docker start -a -i containerID                          #Restart a container
 
 
 #*******************************************************************************

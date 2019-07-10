@@ -34,13 +34,32 @@ Downloading SHBAAM with Docker can be done using:
 $ docker pull chdavid/shbaam
 ```
 
-### Install packages
+### Run SHBAAM
 The beauty of Docker is that there is **no need to install anymore packages**.
 SHBAAM is ready to go! To run it, just use:
 
 ```
-$ docker run --rm --name shbaam -it chdavid/shbaam
+$ docker run --rm -it chdavid/shbaam
 ```
+
+Or, if you'd like to run the Jupyter tutorial instead, you should first start
+with:
+
+```
+$ docker run --rm -it -p 8888:8888 chdavid/shbaam jupyter notebook TUTORIAL.ipynb --ip 0.0.0.0 --no-browser --allow-root
+```
+
+You'll see that two URLs will be suggested, for example:
+
+```
+    Copy and paste one of these URLs:
+        http://(0123456789ab or 127.0.0.1):8888/?token=0123456789abcdefghijklmnopqrstuvwxyz0123456789ab
+```
+
+You then just need to extract one of the suggested URLs, and paste it in the
+address bar of your internet browser. Note that the URLs are randomly generated
+each time for security reasons. With the example above, you would use:
+`http://127.0.0.1:8888/?token=0123456789abcdefghijklmnopqrstuvwxyz0123456789ab`
 
 ## Testing with Docker
 Testing scripts are currently under development.

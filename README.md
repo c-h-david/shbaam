@@ -46,7 +46,7 @@ Or, if you'd like to run the Jupyter tutorial instead, you should first start
 with:
 
 ```
-$ docker run --rm -it -p 8888:8888 chdavid/shbaam jupyter notebook TUTORIAL.ipynb --ip 0.0.0.0 --no-browser --allow-root
+$ docker run --rm -it -p 8888:8888 chdavid/shbaam jupyter notebook --ip 0.0.0.0 --no-browser --allow-root
 ```
 
 You'll see that two URLs will be suggested, for example:
@@ -60,6 +60,8 @@ You then just need to extract one of the suggested URLs, and paste it in the
 address bar of your internet browser. Note that the URLs are randomly generated
 each time for security reasons. With the example above, you would use:
 `http://127.0.0.1:8888/?token=0123456789abcdefghijklmnopqrstuvwxyz0123456789ab`
+to access the Jupyter dashboard from your internet browser. Finally, click on
+`TUTORIAL.ipynb` within the Jupyter dashboard.
 
 ## Testing with Docker
 Testing scripts are currently under development.

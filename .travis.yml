@@ -39,15 +39,16 @@ before_install:
 - echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc
 
 #-------------------------------------------------------------------------------
-#Specific to Linux
+#Install operating system dependencies
 #-------------------------------------------------------------------------------
-- apt-get --version
-- sudo apt-get install -y $(grep -v -E '(^#|^$)' requirements.apt)
-- apt list --installed
+- sudo apt-get update
+- sudo apt-get install -y --no-install-recommends $(grep -v -E '(^#|^$)' requirements.apt)
 
 #-------------------------------------------------------------------------------
 #General environment details
 #-------------------------------------------------------------------------------
+- apt-get --version
+- apt list --installed
 - which python3
 - python3 --version
 - python3 -c "import site; print(site.getsitepackages())"
@@ -60,10 +61,11 @@ before_install:
 #Installing SHBAAM
 #*******************************************************************************
 install:
-- sudo pip3 install `grep 'pip==' requirements.pip`
+- wget https://bootstrap.pypa.io/get-pip.py
+- sudo python3 get-pip.py --no-cache-dir `grep 'pip==' requirements.pip` `grep 'setuptools==' requirements.pip` `grep 'wheel==' requirements.pip`
 - which pip3
 - pip3 --version
-- pip3 install --user -r requirements.pip
+- sudo pip3 install -r requirements.pip
 
 
 #*******************************************************************************

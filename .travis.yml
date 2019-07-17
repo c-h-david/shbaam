@@ -19,12 +19,6 @@ matrix:
     - os: linux
       language: generic
       sudo: required
-    - os: osx
-      language: generic
-    - os: windows
-      language: shell
-  allow_failures:
-    - os: windows
 
 
 #*******************************************************************************
@@ -43,8 +37,6 @@ before_install:
 #Create .netrc file for secure downloads (users need their own credentials)
 #-------------------------------------------------------------------------------
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "set-content ~/.netrc 'machine urs.earthdata.nasa.gov login $ENV:NETRC_LOGIN_EDATA password $ENV:NETRC_PSWRD_EDATA'" ; fi
 
 #-------------------------------------------------------------------------------
 #Specific to Linux
@@ -52,21 +44,6 @@ before_install:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt-get --version             ; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $(grep -v -E '(^#|^$)' requirements.apt) ; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt list --installed          ; fi
-
-#-------------------------------------------------------------------------------
-#Specific to OSX
-#-------------------------------------------------------------------------------
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew --version                  ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew reinstall $(grep -v -E '(^#|^$)' requirements.brw) ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew list                       ; fi
-
-#-------------------------------------------------------------------------------
-#Specific to Windows
-#-------------------------------------------------------------------------------
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco info choco            ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "choco install --no-progress ((gc requirements.cho) -notmatch '^#' -match '\S')" ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then export PATH="C:\\ProgramData\\MiniConda2\\;C:\\ProgramData\\MiniConda2\\Scripts;$ENV:PATH" ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco list --local-only     ; fi
 
 #-------------------------------------------------------------------------------
 #General environment details (OS-agnostic)
@@ -86,15 +63,9 @@ before_install:
 install:
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo rm -r /usr/lib/python2.7/dist-packages/* ; fi
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo rm -r /Library/Python/2.7/site-packages/* ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "Remove-Item -Force -Recurse -ErrorAction SilentlyContinue C:\Python27\Lib\site-packages\*" ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then powershell "conda install -y -q -c anaconda ((gc requirements.pip) -match 'pip==')" ; fi
 - which pip
 - pip --version
 - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install --user -r requirements.pip  ; fi
-- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then sudo pip install -r requirements.pip  ; fi
-- if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then conda install -y -q -c anaconda --file requirements.cnd ; fi
 
 
 #*******************************************************************************

@@ -56,7 +56,7 @@ RUN python3 get-pip.py --no-cache-dir \
     `grep 'wheel==' requirements.pip` && \
     rm get-pip.py
 
-RUN pip install --no-cache-dir -r requirements.pip
+RUN pip3 install --no-cache-dir -r requirements.pip
 
 
 #*******************************************************************************

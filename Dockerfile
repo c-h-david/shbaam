@@ -28,7 +28,7 @@
 #*******************************************************************************
 #Operating System
 #*******************************************************************************
-FROM debian:stable-slim
+FROM debian:stretch-slim
 
 
 #*******************************************************************************
@@ -50,11 +50,13 @@ RUN  apt-get update && \
 #Python requirements
 #*******************************************************************************
 ADD https://bootstrap.pypa.io/get-pip.py .
-RUN python get-pip.py `grep 'pip==' requirements.pip` --no-cache-dir && \
+RUN python3 get-pip.py --no-cache-dir \
+    `grep 'pip==' requirements.pip` \
+    `grep 'setuptools==' requirements.pip` \
+    `grep 'wheel==' requirements.pip` && \
     rm get-pip.py
 
 RUN pip install --no-cache-dir -r requirements.pip
-ENV GDAL_DATA=/usr/local/lib/python2.7/dist-packages/fiona/gdal_data/
 
 
 #*******************************************************************************

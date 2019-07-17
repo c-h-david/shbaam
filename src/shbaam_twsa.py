@@ -383,7 +383,7 @@ shb_dat_str=datetime.datetime.strptime('2002-01-01T00:00:00',                \
 
 YV_grc_time=[]
 for JS_grc_time in range(IS_grc_time):
-     shb_dat_dlt=datetime.timedelta(days=ZV_grc_time[JS_grc_time])
+     shb_dat_dlt=datetime.timedelta(days=float(ZV_grc_time[JS_grc_time]))
      YS_grc_time=(shb_dat_str+shb_dat_dlt).strftime('%m/%d/%Y')
      YV_grc_time.append(YS_grc_time)
 
@@ -393,7 +393,7 @@ for JS_grc_time in range(IS_grc_time):
 #*******************************************************************************
 print('Write shb_wsa_csv')
 
-with open(shb_wsa_csv, 'wb') as csvfile:
+with open(shb_wsa_csv, 'w') as csvfile:
      #csvwriter = csv.writer(csvfile, dialect='excel', quotechar="'",           \
      #                       quoting=csv.QUOTE_NONNUMERIC)
      csvwriter = csv.writer(csvfile, dialect='excel')
@@ -440,6 +440,7 @@ vsn=subprocess.Popen('bash ../version.sh',                                     \
                      stdout=subprocess.PIPE,shell=True).communicate()
 vsn=vsn[0]
 vsn=vsn.rstrip()
+vsn=str(vsn)
 #Version of SHBAAM
 
 h.Conventions='CF-1.6'

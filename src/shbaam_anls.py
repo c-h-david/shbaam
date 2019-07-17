@@ -71,6 +71,10 @@ time_series_files = glob.glob(IN_DIR_PATH+'*' + REGION + '*'+'.csv')
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 #Create output dataframe for ALL variables
 #- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+pd.plotting.register_matplotlib_converters()
+#Future versions of pandas are expected to require explicit registration of
+#matplotlib converters
+
 df_all = pd.DataFrame()
 for f in time_series_files:
      if 'CLM' in f or 'MOS' in f or 'NOAH' in f or 'VIC' in f:

@@ -83,6 +83,7 @@ with open(csv_file1) as csv_file:
      reader=csv.reader(csv_file,dialect='excel')
      for row in reader:
           row=filter(lambda x: x!='',row)
+          row=list(row)
           #Removes the empty strings created by csv.reader for trailing commas
           for JS_col in range(len(row)):
                try:
@@ -108,6 +109,7 @@ with open(csv_file2) as csv_file:
      reader=csv.reader(csv_file,dialect='excel')
      for row in reader:
           row=filter(lambda x: x!='',row)
+          row=list(row)
           #Removes the empty strings created by csv.reader for trailing commas
           for JS_col in range(len(row)):
                try:

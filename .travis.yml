@@ -36,19 +36,18 @@ before_install:
 #-------------------------------------------------------------------------------
 #Create .netrc file for secure downloads (users need their own credentials)
 #-------------------------------------------------------------------------------
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc ; fi
+- echo "machine urs.earthdata.nasa.gov login $NETRC_LOGIN_EDATA password $NETRC_PSWRD_EDATA" >> ~/.netrc
 
 #-------------------------------------------------------------------------------
 #Specific to Linux
 #-------------------------------------------------------------------------------
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt-get --version             ; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get install -y $(grep -v -E '(^#|^$)' requirements.apt) ; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then apt list --installed          ; fi
+- apt-get --version
+- sudo apt-get install -y $(grep -v -E '(^#|^$)' requirements.apt)
+- apt list --installed
 
 #-------------------------------------------------------------------------------
-#General environment details (OS-agnostic)
+#General environment details
 #-------------------------------------------------------------------------------
-- echo $TRAVIS_OS_NAME
 - which python
 - python --version
 - python -c "import site; print(site.getsitepackages())"
@@ -61,11 +60,11 @@ before_install:
 #Installing SHBAAM
 #*******************************************************************************
 install:
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo rm -r /usr/lib/python2.7/dist-packages/* ; fi
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo pip install `grep 'pip==' requirements.pip` ; fi
+- sudo rm -r /usr/lib/python2.7/dist-packages/*
+- sudo pip install `grep 'pip==' requirements.pip`
 - which pip
 - pip --version
-- if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then pip install --user -r requirements.pip  ; fi
+- pip install --user -r requirements.pip
 
 
 #*******************************************************************************

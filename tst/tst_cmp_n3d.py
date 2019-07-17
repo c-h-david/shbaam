@@ -6,7 +6,7 @@
 #Purpose:
 #Compare netCDF files.
 #Author:
-#Cedric H. David, 2018-2018
+#Cedric H. David, 2018-2019
 
 
 #*******************************************************************************

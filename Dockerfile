@@ -6,7 +6,7 @@
 #This file describes the operating system prerequisites for SHBAAM, and is used
 #by the Docker software.
 #Author:
-#Cedric H. David, 2018-2018
+#Cedric H. David, 2018-2019
 
 
 #*******************************************************************************

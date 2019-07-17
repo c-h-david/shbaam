@@ -8,7 +8,7 @@
 #downloads LDAS data from GES-DISC using the NASA EarthData credentials stored
 #locally in '~/.netrc' file.
 #Author:
-#Cedric H. David, 2018-2018
+#Cedric H. David, 2018-2019
 
 
 #*******************************************************************************

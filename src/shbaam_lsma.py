@@ -12,9 +12,8 @@
 # Outputs include: a csv file AND a netcdf file for the subset area
 
 #Author:
-# A.J. Purdy, 2019
-# Modified from C.H. David  shbaam_twsa.py
-# Modified from UCI Fall 2018 CS Class: Tong, Alaya, Gonzalez, Yamamoto
+#A.J. Purdy, and Cedric H. David, 2019-2019
+
 
 #*******************************************************************************
 #Import Python modules

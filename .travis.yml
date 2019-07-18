@@ -62,7 +62,7 @@ install:
 - sudo python3 get-pip.py --no-cache-dir `grep 'pip==' requirements.pip` `grep 'setuptools==' requirements.pip` `grep 'wheel==' requirements.pip`
 - which pip3
 - pip3 --version
-- sudo pip3 install -r requirements.pip
+- sudo pip3 install --no-cache-dir -r requirements.pip
 
 
 #*******************************************************************************

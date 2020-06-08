@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/c-h-david/shbaam.svg?branch=master)](https://travis-ci.org/c-h-david/shbaam)
 
-[![Docker Build](https://img.shields.io/docker/cloud/build/chdavid/shbaam.svg)](https://hub.docker.com/r/chdavid/shbaam/)
+[![Docker Build](https://img.shields.io/docker/cloud/build/chdavid/shbaam.svg)](https://hub.docker.com/r/chdavid/shbaam/tags)
 
 Satellite Hydrology Bits Analysis And Mapping (SHBAAM) is a Python and bash
 shell toolbox that combines many repetitive pre and post-processing tasks that

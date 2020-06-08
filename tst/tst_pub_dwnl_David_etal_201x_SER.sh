@@ -80,46 +80,6 @@ done
 
 
 #*******************************************************************************
-#Download current GRACE files
-#*******************************************************************************
-
-#-------------------------------------------------------------------------------
-#Download parameters
-#-------------------------------------------------------------------------------
-URL="https://podaac-tools.jpl.nasa.gov/drive/files/allData/tellus/retired/L3/grace/mascon/RL05/JPL/CRI/netcdf/"
-
-folder="../input/GRACE"
-
-list="                                                                         \
-      CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                                   \
-      CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc.md5                               \
-      JPL_MSCNv01_PLACEMENT.nc                                                 \
-      LAND_MASK.CRIv01.nc                                                      \
-      LAND_MASK.CRIv01.nc.md5                                                  \
-    "
-
-#-------------------------------------------------------------------------------
-#Download process
-#-------------------------------------------------------------------------------
-mkdir -p $folder
-for file in $list
-do
-     wget -nv -nc $URL/$file -P $folder 2>&1
-     if [ $? -gt 0 ] ; then echo "Problem downloading $file" >&2 ; exit 44 ; fi
-done
-
-#-------------------------------------------------------------------------------
-#Check downloads
-#-------------------------------------------------------------------------------
-cd $folder
-md5sum -c CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc.md5
-if [ $? -gt 0 ] ; then echo "Problem Checking file" >&2 ; exit 44 ; fi
-md5sum -c LAND_MASK.CRIv01.nc.md5
-if [ $? -gt 0 ] ; then echo "Problem Checking file" >&2 ; exit 44 ; fi
-cd -
-
-
-#*******************************************************************************
 #Download retired GRACE files
 #*******************************************************************************
 
@@ -130,6 +90,11 @@ URL="https://podaac-tools.jpl.nasa.gov/drive/files/allData/tellus/retired/L3/gra
 folder="../input/GRACE"
 
 list="                                                                         \
+      CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc                                   \
+      CLM4.SCALE_FACTOR.JPL.MSCNv01CRIv01.nc.md5                               \
+      JPL_MSCNv01_PLACEMENT.nc                                                 \
+      LAND_MASK.CRIv01.nc                                                      \
+      LAND_MASK.CRIv01.nc.md5                                                  \
       GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc                 \
       GRCTellus.JPL.200204_201701.GLO.RL05M_1.MSCNv02CRIv02.nc.md5             \
     "

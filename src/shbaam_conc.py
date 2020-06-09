@@ -7,7 +7,7 @@
 #Given a path to a folder containing GLDAS netCDF files in subdirectories, this
 #script concatenates all files into a new netCDF file in the parent folder.
 #Author:
-#A.J. Purdy, and Cedric H. David, 2019-2019
+#A.J. Purdy, and Cedric H. David, 2019-2020
 
 
 #*******************************************************************************

@@ -8,7 +8,7 @@
 # a csv file to and summary figures (GRACE & GLDAS, and GW anomalies)
 
 #Authors:
-#A.J. Purdy, and Cedric H. David, 2019-2019
+#A.J. Purdy, and Cedric H. David, 2019-2020
 
 
 #*******************************************************************************

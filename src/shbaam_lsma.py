@@ -12,7 +12,7 @@
 # Outputs include: a csv file AND a netcdf file for the subset area
 
 #Author:
-#A.J. Purdy, and Cedric H. David, 2019-2019
+#A.J. Purdy, and Cedric H. David, 2019-2020
 
 
 #*******************************************************************************

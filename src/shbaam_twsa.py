@@ -14,7 +14,7 @@
 #shapefile. If the shapefile touches coastal grid cells that have NoData in the 
 #GRACE scale factors, these points are ignored in the averaging.
 #Author:
-#Cedric H. David, 2017-2019
+#Cedric H. David, 2017-2020
 
 
 #*******************************************************************************

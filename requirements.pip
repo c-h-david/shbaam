@@ -21,6 +21,7 @@
 pip==19.1.1
 setuptools==41.0.1
 wheel==0.33.4
+cftime==1.0.3.4
 numpy==1.16.4
 netCDF4==1.5.1.2
 fiona==1.8.6
